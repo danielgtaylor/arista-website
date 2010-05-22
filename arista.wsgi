@@ -13,9 +13,11 @@ import os
 import sys
 
 # Set the path to settings.py
-os.environ['DJANGO_SETTINGS_MODULE'] = 'website.settings'
+os.environ['DJANGO_SETTINGS_MODULE'] = 'arista-website.settings'
 
 BASE = os.path.dirname(os.path.abspath(__file__))
+
+sys.path.insert(0, os.path.dirname(BASE))
 
 # Path to where Django is
 sys.path.insert(0, os.path.join(BASE, "contrib"))
