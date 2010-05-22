@@ -19,6 +19,9 @@ MODE = DEVELOPMENT
 # The root path of this project, based on where the current file is
 PROJECT_ROOT = os.path.dirname(__file__)
 
+FORCE_SCRIPT_NAME = ''
+FCGI = True
+
 if MODE == DEVELOPMENT:
     DEBUG = True
 
