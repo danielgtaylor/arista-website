@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Arista Transcoder - Not Found!{% endblock %}
+
+{% block content %}
+    <h1>Not Found!</h1>
+    <div class="right">
+        <img src="{{ MEDIA_URL }}img/seal.jpg" alt="Cute Seal" style="border-radius: 15px; margin-left: 15px;"/>
+    </div>
+    <p>
+        The requested page was not found.
+    <p>
+        The page administrators have been notified, and if this is a page that should exist it will be fixed shortly. Until then, please enjoy the picture to the right!
+    </p>
+    <ul>
+        <li><a href="{{ request.META.HTTP_REFERER }}">Go back</a></li>
+        <li><a href="/">Go to www.transcoder.org</a></li>
+        <li><a href="/contact/">Contact us</a></li>
+    </ul>
+    
+{% endblock %}
+
