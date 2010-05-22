@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>{% block title %}Arista Transcoder{% endblock %}</title>
+    <meta name="keywords" content="Arista Transcoder, transcoder, GNOME, multimedia, convert, media, presets"/>
+    <link href='http://fonts.googleapis.com/css?family=Josefin+Sans+Std+Light' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ MEDIA_URL }}css/screen.css"/>
+    <script src="http://cdn.jquerytools.org/1.2.2/jquery.tools.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("[title]").tooltip({
+                effect: "fade",
+                position: "bottom center",
+                opacity: 0.7
+            });
+        });
+    </script>
+    {% block head %}{% endblock %}
+</head>
+
+<body>
+    <div id="menu">
+        <ul>
+            <li><a id="about" href="/" title="About Arista Transcoder">About</a></li>
+            <li><a id="presets" href="/presets/" title="Share and download new presets for various devices">Presets</a></li>
+            <li><a id="screenshots" href="/screenshots/" title="See Arista in action">Screenshots</a></li>
+            <li><a href="http://github.com/danielgtaylor/arista/downloads" title="Download the latest version">Download</a></li>
+        </ul>
+        <a id="donate" href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=V7SCZ2ZTJKQ5A" title="Please contribute a donation to help keep this project alive!">Donate</a>
+    </div>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <div class="clear"></div>
+    <div id="footer">
+        <a id="contact" href="/contact/" title="Give feedback">Contact</a> / <a href="http://github.com/danielgtaylor/arista" title="Download the source code">Code</a> / <a href="http://github.com/danielgtaylor/arista/issues" title="Report or comment on issues">Issues</a> / Copyright &copy; 2010 Daniel G. Taylor
+    </div>
+</body>
+
+</html>

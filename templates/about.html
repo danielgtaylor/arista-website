@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Arista Transcoder - About{% endblock %}
+
+{% block head %}
+    <style type="text/css">
+        body {
+            background-image: url({{ MEDIA_URL }}img/background-stripe.png);
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div id="main">
+        <p>
+            <img src="{{ MEDIA_URL }}/img/logo.png"/>
+        </p>
+        <p>
+            <em>The easiest way to convert your media.</em>
+        </p>
+    </div>
+{% endblock %}
+

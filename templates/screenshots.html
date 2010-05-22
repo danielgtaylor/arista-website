@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block title %}Arista Transcoder - Screenshots{% endblock %}
+
+{% block head %}
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/galleria/galleria.js"></script>
+    <script type="text/javascript">
+        Galleria.loadTheme('{{ MEDIA_URL }}js/galleria/themes/classic/galleria.classic.js');
+        
+        $(document).ready(function () {
+            $('.gallery').galleria();
+        })
+    </script>
+{% endblock %}
+
+{% block content %}
+    <h1>Screenshots</h1>
+    <div class="gallery">
+        <img src="{{ MEDIA_URL }}img/screenshots/arista-shiki.png" alt="Main window and preferences"/>
+        <img src="{{ MEDIA_URL }}img/screenshots/arista-futurama.png" alt="Creating a conversion for the computer and a Sony PSP"/>
+        <img src="{{ MEDIA_URL }}img/screenshots/arista-clearlooks.png" alt="Converting Futurama for a DivX-capable DVD player"/>
+        <img src="{{ MEDIA_URL }}img/screenshots/arista-human.png" alt="About dialog"/>
+    </div>
+    <p>
+        Feel free to <a href="/contact/">contact us</a> if you would like your screenshots added here!
+    </p>
+{% endblock %}
+

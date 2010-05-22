@@ -1,0 +1,130 @@
+body {
+    color: white;
+    background: #607f31 url(/media/img/background.png) top left repeat-x;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans;
+    padding: 1em;
+}
+
+a {
+    color: #9bd;
+}
+
+h1 {
+    font-family: "Josefin Sans Std Light", arial, serif;
+    text-shadow: #595 -1px -1px 1px;
+}
+
+th {
+    text-align: right;
+    vertical-align: top;
+}
+
+input, textarea {
+    color: black;
+    background-color: white;
+    border: 1px solid #595;
+    border-radius: 5px;
+    width: 100%;
+}
+
+button {
+    color: white;
+    background-color: #579;
+    padding: 0.5em 2em;
+    border: 2px solid #357;
+    border-radius: 5px;
+    font-size: 120%;
+    text-shadow: #357 -1px -1px 1px;
+}
+
+button:hover {
+    background-color: #79b;
+}
+
+.tooltip {
+    color: white;
+    background-color: black;
+    padding: 0.4em;
+    border-radius: 6px;
+    width: 120px;
+    text-shadow: black 1px 1px 0px;
+    border: 2px solid white;
+    box-shadow: 10px 10px 5px #888;
+}
+
+.half {
+    width: 49%;
+}
+
+.left {
+    float: left;
+}
+
+.right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+#menu {
+    text-align: right;
+    font-family: 'Josefin Sans Std Light', arial, serif;
+}
+
+#menu a {
+    color: white;
+    text-decoration: none;
+    font-size: 20pt;
+    padding: 0.25em 0.5em;
+    margin: 0.25em 0.5em;
+    text-shadow: #595 -1px -1px 1px;
+}
+
+#menu a.selected {
+    border-bottom: 1px solid white;
+}
+
+#menu ul {
+    float: left;
+    padding: 0em;
+    margin: 0em;
+}
+
+#menu li {
+    display: inline;
+    padding: 0em;
+    margin: 0em;
+}
+
+#content {
+    margin-top: 60px;
+}
+
+#main {
+    font-family: 'Josefin Sans Std Light', arial, serif;
+    text-align: center;
+    margin-top: 40px;
+    font-size: 34pt;
+    text-shadow: #595 -1px -1px 1px;
+}
+
+#main p {
+    margin: 2em;
+}
+
+#footer {
+    font-family: 'Josefin Sans Std Light', arial, serif;
+    opacity: 0.4;
+    text-align: right;
+    margin: 1em;
+}
+
+#footer a {
+    color: white;
+}
+
