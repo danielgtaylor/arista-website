@@ -27,6 +27,8 @@ input, textarea {
     background-color: white;
     border: 1px solid #595;
     border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     width: 100%;
 }
 
@@ -36,6 +38,8 @@ button {
     padding: 0.5em 2em;
     border: 2px solid #357;
     border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
     font-size: 120%;
     text-shadow: #357 -1px -1px 1px;
 }
@@ -49,6 +53,8 @@ button:hover {
     background-color: black;
     padding: 0.4em;
     border-radius: 6px;
+    -moz-border-radius: 6px;
+    -webkit-border-radius: 6px;
     width: 120px;
     text-shadow: black 1px 1px 0px;
     border: 2px solid white;
