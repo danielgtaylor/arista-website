@@ -4,6 +4,9 @@
 # Initialize Arista Website
 #
 
+git submodule init
+git submodule update
+
 if [ -f arista.db ]; then
     rm arista.db
 fi
