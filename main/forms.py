@@ -6,3 +6,8 @@ class ContactForm(forms.Form):
     title = forms.CharField()
     message = forms.CharField(widget=widgets.Textarea())
 
+class SubmitForm(forms.Form):
+    email = forms.EmailField()
+    preset_file = forms.FileField()
+    icon_file = forms.FileField()
+

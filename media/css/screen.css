@@ -17,9 +17,34 @@ h1 {
     text-shadow: #595 -1px -1px 1px;
 }
 
+tr.even {
+    background: transparent url(/media/img/white10.png) top left repeat;
+}
+
 th {
+    text-align: left;
+}
+
+th.num, td.num {
+    text-align: right;
+}
+
+th, td {
+    padding: 0.25em 1em;
+}
+
+table img {
+    vertical-align: middle;
+}
+
+form th {
     text-align: right;
     vertical-align: top;
+    padding: 0.15em;
+}
+
+form td {
+    padding: 0.15em;
 }
 
 input, textarea {
@@ -32,7 +57,7 @@ input, textarea {
     width: 100%;
 }
 
-button {
+button, .button {
     color: white;
     background-color: #579;
     padding: 0.5em 2em;
@@ -42,9 +67,11 @@ button {
     -webkit-border-radius: 5px;
     font-size: 120%;
     text-shadow: #357 -1px -1px 1px;
+    text-decoration: none;
+    cursor: pointer;
 }
 
-button:hover {
+button:hover, .button:hover {
     background-color: #79b;
 }
 
@@ -59,6 +86,13 @@ button:hover {
     text-shadow: black 1px 1px 0px;
     border: 2px solid white;
     box-shadow: 10px 10px 5px #888;
+}
+
+.info {
+    color: #357;
+    background-color: white;
+    padding: 0.25em;
+    opacity: 0.7;
 }
 
 .half {

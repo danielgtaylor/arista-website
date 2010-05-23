@@ -4,9 +4,34 @@
 
 {% block content %}
     <h1>Presets</h1>
-    <p>
-        Coming soon.
+    <p class="right" style="margin-top: -3em;">
+        <a class="button" href="/presets/submit/">Submit a new preset</a>
     </p>
+    {% if request.GET.thanks %}
+        <p><span class="info">Thanks for the submission! You will receive an email within a day or two.</span></p>
+    {% endif %}
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Author</th>
+            <th class="num">Version</th>
+            <th>Action</th>
+        </th>
+        {% for preset in presets %}
+        <tr class="{% cycle 'odd' 'even' %}">
+            <td><img src="{{ MEDIA_URL }}presets/{{ preset.icon|slice:"7:" }}" width="18" height="18"/> {{ preset.make }} {{ preset.model }}</td>
+            <td>{{ preset.description }}</td>
+            <td>{{ preset.author.name }}</td>
+            <td class="num">{{ preset.version }}</td>
+            <td><a href="{{ MEDIA_URL }}presets/{{ preset.name }}.tar.bz2">download</a>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5">Add some presets files to your MEDIA_ROOT directory!</td>
+        </tr>
+        {% endfor %}
+    </table>
     
 {% endblock %}
 
