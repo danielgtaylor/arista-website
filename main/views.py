@@ -88,3 +88,6 @@ def contact(request):
         "form": form,
     })
 
+def thanks(request):
+    return render(request, "thanks.html")
+

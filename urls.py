@@ -24,6 +24,7 @@ urlpatterns += patterns('main.views',
     (r'^presets/submit/$', 'preset_submit'),
     (r'^screenshots/$', 'screenshots'),
     (r'^contact/$', 'contact'),
+    (r'^thanks/$', 'thanks'),
 )
 
 if settings.DEBUG:
