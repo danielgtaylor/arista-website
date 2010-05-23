@@ -34,12 +34,14 @@ if MODE == DEVELOPMENT:
 elif MODE == PRODUCTION:
     DEBUG = False
 
-    DATABASE_ENGINE = ''
-    DATABASE_NAME = ''
-    DATABASE_USER = ''
-    DATABASE_PASSWORD = ''
-    DATABASE_HOST = ''
+    DATABASE_ENGINE = 'mysql'
+    DATABASE_NAME = 'arista'
+    DATABASE_USER = 'arista'
+    DATABASE_PASSWORD = 'arista'
+    DATABASE_HOST = 'localhost'
     DATABASE_PORT = ''
+    
+    PREPEND_WWW = True
 
 TEMPLATE_DEBUG = DEBUG
 
