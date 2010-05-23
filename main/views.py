@@ -78,7 +78,7 @@ def contact(request):
         form = ContactForm(request.POST)
         
         if form.is_valid():
-            send_mail("[Arista] " + form.cleaned_data["title"], form.cleaned_data["message"], form.cleaned_data["email"], settings.ADMINS)
+            send_mail("[Arista] " + form.cleaned_data["title"], form.cleaned_data["message"], form.cleaned_data["email"], [x[1] for x in settings.ADMINS])
             
             return HttpResponseRedirect("/contact/thanks")
     else:
