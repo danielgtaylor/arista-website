@@ -1,6 +1,10 @@
 # Create your views here.
 
-import json
+try:
+    import json
+except ImportError:
+    import simplejson as json
+    
 import glob
 import os
 
