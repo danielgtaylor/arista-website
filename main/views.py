@@ -34,12 +34,12 @@ def presets(request):
     
     search_path = os.path.join(settings.MEDIA_ROOT, "presets", "*.json")
     print search_path
-    for filename in sorted(glob.glob(search_path)):
+    for filename in glob.glob(search_path):
         presets.append(json.load(open(filename)))
         presets[-1]["name"] = os.path.basename(filename)[:-5]
 
     return render(request, "presets/list.html", {
-        "presets": presets,
+        "presets": sorted(presets, lambda x,y: cmp(x["make"]+x["model"], y["make"]+y["model"])),
     })
 
 def preset_submit(request):
