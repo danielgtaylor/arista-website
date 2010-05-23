@@ -49,7 +49,7 @@ def preset_submit(request):
                 "subject": "[Arista] Preset for %s" % preset.name[:-5],
                 "body": "A user has uploaded a new preset!",
                 "from_email": form.cleaned_data["email"],
-                "to": settings.ADMINS,
+                "to": [x[1] for x in settings.ADMINS],
                 "attachments": [
                     (preset.name, preset.read(), "text/javascript"),
                     (icon.name, icon.read(), icon.name.endswith("svg") and "image/svg" or "image/png"),
