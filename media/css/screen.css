@@ -166,5 +166,6 @@ button:hover, .button:hover {
 
 #footer a {
     color: white;
+    text-decoration: none;
 }
 
