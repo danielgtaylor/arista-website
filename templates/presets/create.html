@@ -1,0 +1,166 @@
+{% extends "base.html" %}
+
+{% block title %}Arista Transcoder - Create a Preset{% endblock %}
+
+{% block content %}
+    <script type="text/javascript">
+        function ipod_example() {
+            $('#id_author_name').val("Daniel G. Taylor");
+            $('#id_author_email').val("dan@programmer-art.org");
+            $('#id_short_name').val("ipod");
+            $('#id_make').val("Apple");
+            $('#id_model').val("iPod / iPhone");
+            $('#id_description').val("H.264/AAC in MP4 for iPod / iPhone");
+            $('#id_container').val("qtmux");
+            $('#id_video_codec').val("x264enc");
+            $('#id_video_codec').change();
+            $('#id_video_quality').val("good");
+            $('#id_width').val("320, 640");
+            $('#id_height').val("240, 480");
+            $('#id_framerate').val("1, 30");
+            $('#id_audio_codec').val("faac");
+            $('#id_audio_bitrate').val("128");
+        }
+        
+        function computer_example() {
+            $('#id_author_name').val("Daniel G. Taylor");
+            $('#id_author_email').val("dan@programmer-art.org");
+            $('#id_short_name').val("computer");
+            $('#id_make').val("Generic");
+            $('#id_model').val("Computer");
+            $('#id_description').val("H.264/AAC in MP4 for your Computer");
+            $('#id_container').val("qtmux");
+            $('#id_video_codec').val("x264enc");
+            $('#id_video_codec').change();
+            $('#id_video_quality').val("good");
+            $('#id_width').val("120, 1920");
+            $('#id_height').val("120, 1080");
+            $('#id_framerate').val("1, 30");
+            $('#id_audio_codec').val("faac");
+            $('#id_audio_bitrate').val("128");
+        }
+        
+        function dvd_example() {
+            $('#id_author_name').val("Daniel G. Taylor");
+            $('#id_author_email').val("dan@programmer-art.org");
+            $('#id_short_name').val("dvd");
+            $('#id_make').val("Generic");
+            $('#id_model').val("DivX DVD Player");
+            $('#id_description').val("DivX home theater for DVD players");
+            $('#id_container').val("avimux");
+            $('#id_video_codec').val("xvidenc");
+            $('#id_video_codec').change();
+            $('#id_video_quality').val("good");
+            $('#id_width').val("320, 1280");
+            $('#id_height').val("240, 720");
+            $('#id_framerate').val("1, 30");
+            $('#id_audio_codec').val("lame");
+            $('#id_audio_bitrate').val("160");
+        }
+        
+        function container_changed() {
+            var val = $('#id_container').val();
+            var i = 0;
+            var voptions = {
+                "x264enc": "H.264",
+                "xvidenc": "MPEG4",
+                "mpeg2enc": "MPEG2 DVD",
+                "theoraenc": "Theora"
+            };
+            var aoptions = {
+                "faac": "AAC",
+                "lame": "MP3",
+                "vorbisenc": "Vorbis"
+            };
+            var voption_html = '';
+            var aoption_html = '';
+            
+            if (val == 'qtmux') {
+                delete voptions.mpeg2enc;
+                delete voptions.theoraenc;
+                delete aoptions.vorbisenc;
+            } else if (val == 'matroskamux') {
+                delete voptions.mpeg2enc;
+            } else if (val == 'avimux') {
+                delete voptions.mpeg2enc;
+                delete voptions.theoraenc;
+            } else if (val == 'ffmux_dvd') {
+                delete voptions.x264enc;
+                delete voptions.xvidenc;
+                delete voptions.theoraenc;
+                delete aoptions.faac;
+                delete aoptions.vorbisenc;
+            } else if (val == 'oggmux') {
+                delete voptions.x264enc;
+                delete voptions.xvidenc;
+                delete voptions.mpeg2enc;
+                delete aoptions.faac;
+                delete aoptions.lame;
+            }
+            
+            for (i in voptions) {
+                voption_html += '<option value="' + i + '">' + voptions[i] + '</option>';
+            }
+            
+            for (i in aoptions) {
+                aoption_html += '<option value="' + i + '">' + aoptions[i] + '</option>';
+            }
+            
+            $('#id_video_codec').html(voption_html).change();
+            $('#id_audio_codec').html(aoption_html).change();
+        }
+        
+        $(document).ready(function () {
+            $('#id_video_codec').change(function () {
+                if ($(this).val() == 'x264enc' || $(this).val() == 'xvidenc' || $(this).val() == 'theoraenc') {
+                    $('#id_video_quality').parent().parent().show();
+                    $('#id_video_bitrate').parent().parent().hide();
+                } else {
+                    $('#id_video_quality').parent().parent().hide();
+                    $('#id_video_bitrate').parent().parent().show();
+                }
+            });
+            
+            $('#id_video_bitrate').parent().parent().hide();
+            
+            $('#id_container').change(container_changed);
+            container_changed();
+        });
+    </script>
+    <h1>Create a Preset</h1>
+    <div class="half left">
+        <p>
+            Use this simple form to create a new preset for your device. 
+        </p>
+        <p>
+            Some values have been pre-filled for you with safe defaults, but if you know that your device limits these values you should change them. For example, you could limit your iPhone's video dimensions to be a maximum of 640 wide and 480 tall.
+        </p>
+        <p>
+            Load examples:
+        </p>
+        <ul>
+            <li><a href="" onclick="ipod_example(); return false;">iPod / iPhone</a></li>
+            <li><a href="" onclick="computer_example(); return false;">Computer</a></li>
+            <li><a href="" onclick="dvd_example(); return false;">DivX-capable DVD player</a></li>
+        </ul>
+        <p>
+            Note that this is a simplified interface to Arista's device preset system. For more complex changes you'll need to open the preset's JSON file in a text editor.
+        </p>
+        <p>
+            When finished, click <em>create</em> to download the preset file.
+        </p>
+    </div>
+    <div class="half right">
+        <form action="." method="post" enctype="multipart/form-data">
+            <table>
+                {{ form.as_table }}
+                <tr>
+                    <td></td>
+                    <td style="text-align: right;"><button type="submit">Create</button></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    
+{% endblock %}
+

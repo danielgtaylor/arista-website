@@ -3,13 +3,17 @@
 {% block title %}Arista Transcoder - Presets{% endblock %}
 
 {% block content %}
-    <h1>Presets</h1>
-    <p class="right" style="margin-top: -3em;">
-        <a class="button" href="/presets/submit/">Submit a new preset</a>
+    <p class="right">
+        <a class="button" href="/presets/submit/" title="Submit a new preset for this page">Submit</a>
     </p>
+    <p class="right" style="margin-right: 1em;">
+        <a class="button" href="/presets/create/" title="Create a new preset for your device">Create</a>
+    </p>
+    <h1>Presets</h1>
     {% if request.GET.thanks %}
         <p><span class="info">Thanks for the submission! You will receive an email within a day or two.</span></p>
     {% endif %}
+    <div class="clear"></div>
     <table>
         <tr>
             <th>Name</th>

@@ -41,13 +41,15 @@ form th {
     text-align: right;
     vertical-align: top;
     padding: 0.15em;
+    width: 150px;
 }
 
 form td {
     padding: 0.15em;
+    font-size: 70%;
 }
 
-input, textarea {
+input, textarea, select {
     color: black;
     background-color: white;
     border: 1px solid #595;
@@ -93,6 +95,20 @@ button:hover, .button:hover {
     background-color: white;
     padding: 0.25em;
     opacity: 0.7;
+}
+
+.errorlist {
+    padding: 0.5em;
+    margin: 0em;
+}
+
+.errorlist li {
+    color: #900;
+    display: inline;
+}
+
+.errorlist li:before {
+    content: "! ";
 }
 
 .half {

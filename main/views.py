@@ -4,18 +4,24 @@ try:
     import json
 except ImportError:
     import simplejson as json
-    
+
+try:
+    import cStringIO as StringIO
+except ImportError:
+    import StringIO
+
 import glob
 import os
+import tarfile
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.core.mail import send_mail, EmailMessage
-from django.http import HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect
 
 import settings
 
-from forms import ContactForm, SubmitForm
+from forms import ContactForm, SubmitForm, PresetForm
 
 def render(request, template, params = {}, mimetype = 'text/html'):
     """
@@ -67,6 +73,40 @@ def preset_submit(request):
         form = SubmitForm()
     
     return render(request, "presets/submit.html", {
+        "form": form,
+    })
+
+def preset_create(request):
+    if request.method == "POST":
+        form = PresetForm(request.POST, request.FILES)
+        
+        if form.is_valid():
+            response = HttpResponse(mimetype="application/x-bzip-compressed-tar")
+            response["Content-Disposition"] = "attachment; filename=%s.tar.bz2" % form.cleaned_data["short_name"]
+            
+            tar = tarfile.open(fileobj=response, mode="w:bz2")
+            
+            json = StringIO.StringIO()
+            json.write(form.preset_json)
+            json.seek(0)
+            info = tarfile.TarInfo(name=form.cleaned_data["short_name"] + ".json")
+            info.size = len(json.getvalue())
+            tar.addfile(info, fileobj=json)
+            
+            icon = StringIO.StringIO()
+            icon.write(request.FILES["icon"].read())
+            icon.seek(0)
+            info = tarfile.TarInfo(name=request.FILES["icon"].name)
+            info.size = request.FILES["icon"].size
+            tar.addfile(info, fileobj=icon)
+            
+            tar.close()
+            
+            return response
+    else:
+        form = PresetForm()
+    
+    return render(request, "presets/create.html", {
         "form": form,
     })
 

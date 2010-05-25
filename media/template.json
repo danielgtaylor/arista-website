@@ -1,0 +1,54 @@
+{
+    "make": "%(make)s", 
+    "model": "%(model)s", 
+    "description": "%(description)s", 
+    "version": "%(version)s", 
+    "author": {
+        "name": "%(author_name)s", 
+        "email": "%(author_email)s"
+    }, 
+    "icon": "file://%(icon)s"
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "%(extension)s", 
+            "container": "%(container)s", 
+            "vcodec": {
+                "name": "%(video_name)s", 
+                "container": "%(video_container)s", 
+                "width": [
+                    %(width)s
+                ], 
+                "height": [
+                    %(height)s
+                ], 
+                "rate": [
+                    %(rate)s
+                ], 
+                "passes": [
+                    "%(video_pass)s"
+                ]
+            }, 
+            "acodec": {
+                "name": "%(audio_name)s", 
+                "container": "%(audio_container)s", 
+                "width": [
+                    8, 24
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "%(audio_pass)s"
+                ]
+            }
+        }
+    ]
+}
