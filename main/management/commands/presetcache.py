@@ -27,7 +27,7 @@ class Command(BaseCommand):
             for filename in glob.glob(os.path.join(self.search_path, "*.json")):
                 device = json.load(open(filename))
                 short_name = os.path.basename(filename)[:-5]
-                latest.append("%s %s" % (short_name, device["version"]))
+                latest.append("%s, %s" % (short_name, device["version"]))
                 self.gentar(short_name, device)
             
             open(os.path.join(self.search_path, "latest.txt"), "w").write("\n".join(sorted(latest)))
