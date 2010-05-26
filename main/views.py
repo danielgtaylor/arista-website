@@ -39,7 +39,7 @@ def presets(request):
     presets = []
     
     search_path = os.path.join(settings.MEDIA_ROOT, "presets", "*.json")
-    print search_path
+    
     for filename in glob.glob(search_path):
         presets.append(json.load(open(filename)))
         presets[-1]["name"] = os.path.basename(filename)[:-5]
