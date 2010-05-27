@@ -1,3 +1,5 @@
 *.pyc
 settings.py
 arista.db
+media/presets/*.tar.bz2
+media/presets/latest.txt
