@@ -13,7 +13,7 @@ fi
 
 cp settings.py.default settings.py
 ./manage.py syncdb --noinput
-#./manage.py loaddata fixtures/dev.json
+./manage.py presetcache
 
 echo
 echo 'Arista website is ready for development, please run:'
