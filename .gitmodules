@@ -1,3 +1,6 @@
 [submodule "contrib/django"]
 	path = contrib/django
 	url = http://github.com/django/django.git
+[submodule "contrib/python-github2"]
+	path = contrib/python-github2
+	url = http://github.com/ask/python-github2.git

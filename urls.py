@@ -24,6 +24,7 @@ urlpatterns += patterns('main.views',
     (r'^presets/submit/$', 'preset_submit'),
     (r'^presets/create/$', 'preset_create'),
     (r'^screenshots/$', 'screenshots'),
+    (r'^downloads/$', 'downloads'),
     (r'^contact/$', 'contact'),
     (r'^contact/thanks/$', 'thanks'),
 )

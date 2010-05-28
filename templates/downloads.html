@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Arista Transcoder - Downloads{% endblock %}
+
+{% block content %}
+    <h1>Downloads</h1>
+    <div class="half left">
+        <p>
+            Here you can download the latest releas of Arista Transcoder.
+        </p>
+        <div style="text-align: center; padding: 2.5em 0em;">
+            <a class="button" href="http://github.com/danielgtaylor/arista/tarball/{{ data|first|first }}"><img src="{{ MEDIA_URL }}img/download.png" alt="Icon" style="margin-left: -32px; margin-right: 10px; margin-bottom: -10px; margin-top: -10em;"/>Download arista-{{ data|first|first }}</a>
+        </div>
+        <p>
+            To the right you will find a full list of releases, when they were released, and the SHA commit. You can also try the latest unreleased code in <a href="http://github.com/danielgtaylor/arista">trunk</a>.
+        </p>
+    </div>
+    <div class="half right">
+        <table>
+            <tr>
+                <th>Version</th>
+                <th>Date</th>
+                <th>Commit</th>
+            </tr>
+            {% for tag, commit in data %}
+                <tr>
+                    <td><a href="http://github.com/danielgtaylor/arista/tarball/{{ tag }}">arista-{{ tag }}</a></td>
+                    <td>{{ commit.authored_date|date:"j N, Y" }}</td>
+                    <td><a href="{{ commit.url }}">{{ commit.id|slice:":7" }}</a></td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+{% endblock %}
+

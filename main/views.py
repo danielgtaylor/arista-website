@@ -19,6 +19,8 @@ from django.template import RequestContext
 from django.core.mail import send_mail, EmailMessage
 from django.http import HttpResponse, HttpResponseRedirect
 
+from github2.client import Github
+
 import settings
 
 from forms import ContactForm, SubmitForm, PresetForm
@@ -112,6 +114,21 @@ def preset_create(request):
 
 def screenshots(request):
     return render(request, "screenshots.html")
+
+def downloads(request):
+    github = Github()
+    
+    data = []
+    
+    tags = github.repos.tags("danielgtaylor/arista")
+    
+    for tag_name in sorted(tags.keys(), reverse=True):
+        commit = github.commits.show("danielgtaylor/arista", tags[tag_name])
+        data.append([tag_name, commit])
+    
+    return render(request, "downloads.html", {
+        "data": data,
+    })
 
 def contact(request):
     if request.method == "POST":
