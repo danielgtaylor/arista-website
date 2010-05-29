@@ -44,9 +44,13 @@ def presets(request):
     for filename in glob.glob(search_path):
         presets.append(json.load(open(filename)))
         presets[-1]["name"] = os.path.basename(filename)[:-5]
+        if presets[-1]["make"] != "Generic":
+            presets[-1]["display_name"] = presets[-1]["make"] + " " + presets[-1]["model"]
+        else:
+            presets[-1]["display_name"] = presets[-1]["model"]
 
     return render(request, "presets/list.html", {
-        "presets": sorted(presets, lambda x,y: cmp(x["make"]+x["model"], y["make"]+y["model"])),
+        "presets": sorted(presets, lambda x,y: cmp(x["display_name"], y["display_name"])),
     })
 
 def preset_submit(request):

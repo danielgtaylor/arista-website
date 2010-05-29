@@ -24,7 +24,7 @@
         </th>
         {% for preset in presets %}
         <tr class="{% cycle 'odd' 'even' %}">
-            <td><img src="{{ MEDIA_URL }}presets/{{ preset.icon|slice:"7:" }}" width="18" height="18"/> {{ preset.make }} {{ preset.model }}</td>
+            <td><img src="{{ MEDIA_URL }}presets/{{ preset.icon|slice:"7:" }}" width="18" height="18"/> {{ preset.display_name }}</td>
             <td>{{ preset.description }}</td>
             <td>{{ preset.author.name }}</td>
             <td class="num">{{ preset.version }}</td>
