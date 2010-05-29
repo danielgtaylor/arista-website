@@ -34,7 +34,7 @@
                 "name": "%(audio_name)s", 
                 "container": "%(audio_container)s", 
                 "width": [
-                    8, 24
+                    8, 32
                 ], 
                 "depth": [
                     8, 24
