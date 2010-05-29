@@ -63,6 +63,7 @@
             var i = 0;
             var voptions = {
                 "x264enc": "H.264",
+                "vp8enc": "VP8",
                 "xvidenc": "MPEG4",
                 "mpeg2enc": "MPEG2 DVD",
                 "theoraenc": "Theora"
@@ -76,21 +77,33 @@
             var aoption_html = '';
             
             if (val == 'qtmux') {
+                delete voptions.vp8enc;
                 delete voptions.mpeg2enc;
                 delete voptions.theoraenc;
                 delete aoptions.vorbisenc;
+            } else if (val == 'webmmux') {
+                delete voptions.x264enc;
+                delete voptions.xvidenc;
+                delete voptions.mpeg2enc;
+                delete voptions.theoraenc;
+                delete aoptions.faac;
+                delete aoptions.lame;
             } else if (val == 'matroskamux') {
+                delete voptions.vp8enc;
                 delete voptions.mpeg2enc;
             } else if (val == 'avimux') {
+                delete voptions.vp8enc;
                 delete voptions.mpeg2enc;
                 delete voptions.theoraenc;
             } else if (val == 'ffmux_dvd') {
+                delete voptions.vp8enc;
                 delete voptions.x264enc;
                 delete voptions.xvidenc;
                 delete voptions.theoraenc;
                 delete aoptions.faac;
                 delete aoptions.vorbisenc;
             } else if (val == 'oggmux') {
+                delete voptions.vp8enc;
                 delete voptions.x264enc;
                 delete voptions.xvidenc;
                 delete voptions.mpeg2enc;
@@ -112,7 +125,8 @@
         
         $(document).ready(function () {
             $('#id_video_codec').change(function () {
-                if ($(this).val() == 'x264enc' || $(this).val() == 'xvidenc' || $(this).val() == 'theoraenc') {
+                var val = $(this).val();
+                if (val == 'x264enc' || val == 'vp8enc' || val == 'xvidenc' || val == 'theoraenc') {
                     $('#id_video_quality').parent().parent().show();
                     $('#id_video_bitrate').parent().parent().hide();
                 } else {

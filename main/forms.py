@@ -30,6 +30,7 @@ class PresetForm(forms.Form):
     icon = forms.FileField(help_text="An SVG or PNG file")
     container = forms.ChoiceField(choices = [
         ("qtmux", "MP4"),
+        ("webmmux", "WebM"),
         ("matroskamux", "Matroska"),
         ("avimux", "AVI"),
         ("ffmux_dvd", "DVD"),
@@ -37,6 +38,7 @@ class PresetForm(forms.Form):
     ])
     video_codec = forms.ChoiceField(choices = [
         ("x264enc", "H.264"),
+        ("vp8enc", "VP8"),
         ("xvidenc", "MPEG4"),
         ("mpeg2enc", "MPEG2 DVD"),
         ("theoraenc", "Theora"),
@@ -88,6 +90,16 @@ class PresetForm(forms.Form):
         }.get(self.cleaned_data["video_quality"], 21.0)
     
     @property
+    def vp8_video_quality(self):
+        return {
+            "worst": 2,
+            "worse": 4,
+            "good": 5,
+            "better": 6,
+            "best": 8,
+        }.get(self.cleaned_data["video_quality"], 5)
+    
+    @property
     def xvid_video_quality(self):
         return {
             "worst": 10.0,
@@ -113,6 +125,7 @@ class PresetForm(forms.Form):
         
         return {
             "x264enc": "pass=qual quantizer=%d subme=6 cabac=0 threads=0" % self.x264_video_quality,
+            "vp8enc": "quality=%d threads=%%(threads)s" % self.vp8_video_quality,
             "xvidenc": "pass=quant quantizer=%d max-bframes=0 trellis=true" % self.xvid_video_quality,
             "mpeg2enc": "format=9 bitrate=%s" % self.cleaned_data["video_bitrate"],
             "theoraenc": "border=0 quality=%d keyframe-freq=30" % self.theora_video_quality,
