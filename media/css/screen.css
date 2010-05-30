@@ -12,7 +12,7 @@ a {
     color: #ff9;
 }
 
-h1 {
+h1, h2 {
     font-family: "Josefin Sans Std Light", arial, serif;
     text-shadow: #595 -1px -1px 1px;
 }
@@ -176,6 +176,29 @@ button:hover, .button:hover {
 #main h1 {
     font-size: 100%;
     margin: 2em;
+}
+
+#main table {
+    font-size: 12pt;
+    text-align: left;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3em;
+}
+
+#main table td {
+    vertical-align: top;
+    width: 130px;
+}
+
+#main h2 {
+    font-size: 110%;
+}
+
+#main ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
 }
 
 #footer {
