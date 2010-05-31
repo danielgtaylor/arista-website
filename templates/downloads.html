@@ -29,7 +29,7 @@
                 <tr>
                     <td><a href="http://github.com/danielgtaylor/arista/tarball/{{ tag }}">arista-{{ tag }}</a></td>
                     <td>{{ date|date:"j N, Y" }}</td>
-                    <td><a href="{{ commit.url }}">{{ commit|slice:":7" }}</a></td>
+                    <td><a href="http://github.com/danielgtaylor/arista/commit/{{ commit }}">{{ commit|slice:":7" }}</a></td>
                 </tr>
             {% endfor %}
         </table>
