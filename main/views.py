@@ -59,15 +59,13 @@ def preset_submit(request):
         
         if form.is_valid():
             preset = request.FILES["preset_file"]
-            icon = request.FILES["icon_file"]
             message = EmailMessage(**{
                 "subject": "[Arista] Preset for %s" % preset.name[:-5],
                 "body": "A user has uploaded a new preset!",
                 "from_email": form.cleaned_data["email"],
                 "to": [x[1] for x in settings.ADMINS],
                 "attachments": [
-                    (preset.name, preset.read(), "text/javascript"),
-                    (icon.name, icon.read(), icon.name.endswith("svg") and "image/svg" or "image/png"),
+                    (preset.name, preset.read(), "application/x-bzip-compressed-tar"),
                 ],
             })
             

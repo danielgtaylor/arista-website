@@ -16,7 +16,6 @@ class ContactForm(forms.Form):
 class SubmitForm(forms.Form):
     email = forms.EmailField()
     preset_file = forms.FileField()
-    icon_file = forms.FileField()
 
 class PresetForm(forms.Form):
     template = open(os.path.join(settings.PROJECT_ROOT, "media", "template.json")).read()

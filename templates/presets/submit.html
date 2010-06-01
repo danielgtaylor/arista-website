@@ -1,20 +1,23 @@
 {% extends "base.html" %}
 
-{% block title %}Arista Transcoder - Submit a Preset{% endblock %}
+{% block title %}Arista Transcoder - Submit a Device Preset{% endblock %}
 
 {% block content %}
-    <h1>Submit a Preset</h1>
+    <h1>Submit a Device Preset</h1>
     <div class="half left">
         <p>
             Use the form to the right to submit a new preset for Arista Transcoder. It will be reviewed, tested, and added to the presets area of this site.
         </p>
         <p>
-            Every theme requires at least two files:
+            Every device preset requires at least two files:
         </p>
         <ol>
             <li>Device description file (JSON)</li>
             <li>Device icon file (SVG or PNG)</li>
         </ol>
+        <p>
+            Please upload a zip or bz2 of these and any other files you wish to submit (such as preset icons). For an example please <a href="/presets/create/">create and download a device preset</a> using the wizard.
+        </p>
     </div>
     <div class="half right">
         <form action="." method="post" enctype="multipart/form-data">
