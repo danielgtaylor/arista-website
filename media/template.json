@@ -7,7 +7,7 @@
         "name": "%(author_name)s", 
         "email": "%(author_email)s"
     }, 
-    "icon": "file://%(icon)s"
+    "icon": "file://%(icon)s",
     "default": "Normal", 
     "presets": [
         {
