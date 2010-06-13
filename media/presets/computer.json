@@ -6,7 +6,7 @@
         "name": "Daniel G. Taylor", 
         "email": "dan@programmer-art.org"
     }, 
-    "version": "1.3", 
+    "version": "1.5", 
     "icon": "file://computer.svg", 
     "default": "H.264", 
     "presets": [
@@ -64,7 +64,7 @@
             "extension": "mp4", 
             "vcodec": {
                 "passes": [
-                    "pass=qual quantizer=21 me=umh subme=6 ref=3 bframes=3 threads=0"
+                    "pass=qual quantizer=21 me=umh subme=6 ref=3 threads=0"
                 ], 
                 "container": "qtmux", 
                 "name": "x264enc", 
@@ -170,7 +170,7 @@
                     1, 60
                 ], 
                 "passes": [
-                    "quality=6 threads=%(threads)s speed=1"
+                    "quality=6 threads=%(threads)s speed=2"
                 ]
             }, 
             "acodec": {
