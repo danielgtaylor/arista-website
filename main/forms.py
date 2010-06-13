@@ -18,7 +18,7 @@ class SubmitForm(forms.Form):
     preset_file = forms.FileField()
 
 class PresetForm(forms.Form):
-    template = open(os.path.join(settings.PROJECT_ROOT, "media", "template.json")).read()
+    template = unicode(open(os.path.join(settings.PROJECT_ROOT, "media", "template.json")).read())
 
     author_name = forms.CharField()
     author_email = forms.EmailField()
