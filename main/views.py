@@ -60,7 +60,7 @@ def preset_submit(request):
         if form.is_valid():
             preset = request.FILES["preset_file"]
             message = EmailMessage(**{
-                "subject": "[Arista] Preset for %s" % preset.name[:-5],
+                "subject": "[Arista] Preset for %s" % preset.name[:-8],
                 "body": "A user has uploaded a new preset!",
                 "from_email": form.cleaned_data["email"],
                 "to": [x[1] for x in settings.ADMINS],
