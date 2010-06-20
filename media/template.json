@@ -43,7 +43,7 @@
                     8000, 96000
                 ], 
                 "channels": [
-                    1, 2
+                    %(audio_channels)s
                 ], 
                 "passes": [
                     "%(audio_pass)s"

@@ -61,6 +61,7 @@ class PresetForm(forms.Form):
         ("ffenc_ac3", "AC3"),
     ])
     audio_bitrate = forms.IntegerField(help_text="The audio bitrate in kbps", initial=128)
+    audio_channels = forms.RegexField(regex=REGEX_RANGE, help_text="Range of allowed channels, like 'min, max'", initial="1, 2")
     
     def clean_icon(self):
         data = self.cleaned_data["icon"]
@@ -172,6 +173,7 @@ class PresetForm(forms.Form):
             "audio_name": cleaned["audio_codec"],
             "audio_container": self.audio_container,
             "audio_pass": self.audio_pass,
+            "audio_channels": cleaned["audio_channels"],
         }
     
 
