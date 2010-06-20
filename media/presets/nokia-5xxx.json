@@ -1,0 +1,54 @@
+{
+    "make": "Nokia", 
+    "model": "5230, 5530, 5800", 
+    "description": "MPEG4/AAC in MP4 for Nokia 5xxx", 
+    "version": "1.0", 
+    "author": {
+        "name": "Adrian Dimitrov", 
+        "email": "dimitrov.adrian@gmail.com"
+    }, 
+    "icon": "file://nokia-5xxx.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "xvidenc", 
+                "container": "qtmux", 
+                "width": [
+                    120, 640
+                ], 
+                "height": [
+                    120, 480
+                ], 
+                "rate": [
+                    1, 25
+                ], 
+                "passes": [
+                    "pass=quant quantizer=5 max-bframes=0 trellis=true"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
