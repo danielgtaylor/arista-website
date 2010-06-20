@@ -5,14 +5,10 @@ try:
 except ImportError:
     import simplejson as json
 
-try:
-    import cStringIO as StringIO
-except ImportError:
-    import StringIO
-
 import datetime
 import glob
 import os
+import StringIO
 import tarfile
 
 from django.shortcuts import render_to_response
@@ -90,7 +86,7 @@ def preset_create(request):
             tar = tarfile.open(fileobj=response, mode="w:bz2")
             
             json = StringIO.StringIO()
-            json.write(form.preset_json)
+            json.write(form.preset_json.encode("utf-8"))
             json.seek(0)
             info = tarfile.TarInfo(name=form.cleaned_data["short_name"] + ".json")
             info.size = len(json.getvalue())
