@@ -20,7 +20,7 @@
             <th>Description</th>
             <th>Author</th>
             <th class="num">Version</th>
-        </th>
+        </tr>
         {% for preset in presets %}
         <tr class="{% cycle 'odd' 'even' %}">
             <td><a href="{{ MEDIA_URL }}presets/{{ preset.name }}.tar.bz2"><img src="{{ MEDIA_URL }}presets/{{ preset.icon|slice:"7:" }}" width="18" height="18"/></a> <a href="{{ MEDIA_URL }}presets/{{ preset.name }}.tar.bz2">{{ preset.display_name }}</a></td>
