@@ -71,7 +71,8 @@
             var aoptions = {
                 "faac": "AAC",
                 "lame": "MP3",
-                "vorbisenc": "Vorbis"
+                "vorbisenc": "Vorbis",
+                "ffenc_ac3": "AC3"
             };
             var voption_html = '';
             var aoption_html = '';
@@ -81,6 +82,7 @@
                 delete voptions.mpeg2enc;
                 delete voptions.theoraenc;
                 delete aoptions.vorbisenc;
+                delete aoptions.ffenc_ac3;
             } else if (val == 'webmmux') {
                 delete voptions.x264enc;
                 delete voptions.xvidenc;
@@ -88,6 +90,7 @@
                 delete voptions.theoraenc;
                 delete aoptions.faac;
                 delete aoptions.lame;
+                delete aoptions.ffenc_ac3;
             } else if (val == 'matroskamux') {
                 delete voptions.vp8enc;
                 delete voptions.mpeg2enc;
@@ -95,6 +98,10 @@
                 delete voptions.vp8enc;
                 delete voptions.mpeg2enc;
                 delete voptions.theoraenc;
+            } else if (val == 'mpegtsmux') {
+                delete voptions.vp8enc;
+                delete voptions.theoraenc;
+                delete aoptions.vorbisenc;
             } else if (val == 'ffmux_dvd') {
                 delete voptions.vp8enc;
                 delete voptions.x264enc;
@@ -102,6 +109,7 @@
                 delete voptions.theoraenc;
                 delete aoptions.faac;
                 delete aoptions.vorbisenc;
+                delete aoptions.ffenc_ac3;
             } else if (val == 'oggmux') {
                 delete voptions.vp8enc;
                 delete voptions.x264enc;
@@ -109,6 +117,7 @@
                 delete voptions.mpeg2enc;
                 delete aoptions.faac;
                 delete aoptions.lame;
+                delete aoptions.ffenc_ac3;
             }
             
             for (i in voptions) {

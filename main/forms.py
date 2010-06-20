@@ -32,6 +32,7 @@ class PresetForm(forms.Form):
         ("webmmux", "WebM"),
         ("matroskamux", "Matroska"),
         ("avimux", "AVI"),
+        ("mpegtsmux", "MPEG-TS"),
         ("ffmux_dvd", "DVD"),
         ("oggmux", "Ogg"),
     ])
@@ -57,6 +58,7 @@ class PresetForm(forms.Form):
         ("faac", "AAC"),
         ("lame", "MP3"),
         ("vorbisenc", "Vorbis"),
+        ("ffenc_ac3", "AC3"),
     ])
     audio_bitrate = forms.IntegerField(help_text="The audio bitrate in kbps", initial=128)
     
@@ -138,6 +140,7 @@ class PresetForm(forms.Form):
             "faac": "bitrate=%d profile=LC" % (int(cleaned["audio_bitrate"]) * 1024),
             "lame": "bitrate=%s" % cleaned["audio_bitrate"],
             "vorbisenc": "bitrate=%d" % (int(cleaned["audio_bitrate"]) * 1024),
+            "ffenc_ac3": "bitrate=%d" % (int(cleaned["audio_bitrate"]) * 1024),
         }.get(cleaned["audio_codec"], "")
     
     @property
