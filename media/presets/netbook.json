@@ -1,0 +1,54 @@
+{
+    "make": "Generic", 
+    "model": "Netbook", 
+    "description": "Optimized media for netbooks and small laptops", 
+    "version": "1.0", 
+    "author": {
+        "name": "Dennis van der Pool", 
+        "email": "dennisvanderpool@home.nl"
+    }, 
+    "icon": "file://netbook.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "qtmux", 
+                "width": [
+                    320, 1024
+                ], 
+                "height": [
+                    240, 600
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=qual quantizer=22 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
