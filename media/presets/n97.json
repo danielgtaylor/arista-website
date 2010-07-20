@@ -1,0 +1,54 @@
+{
+    "make": "Nokia", 
+    "model": "N97", 
+    "description": "MPEG4 Video with AAC Audio", 
+    "version": "1.0", 
+    "author": {
+        "name": "Amichai Rotman", 
+        "email": "amichai@iglu.org.il"
+    }, 
+    "icon": "file://n97.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "xvidenc", 
+                "container": "qtmux", 
+                "width": [
+                    360, 640
+                ], 
+                "height": [
+                    640, 480
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=quant quantizer=5 max-bframes=0 trellis=true"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
