@@ -1,0 +1,903 @@
+{
+    "make": "Generic",
+    "model": "Computer (Advanced)",
+    "description": "H.264/AAC or Theora/Vorbis for the computer",
+    "version": "0.1",
+    "author": {
+        "name": "Dionisio E Alonso",
+        "email": "dealonso@gmail.com"
+    },
+    "icon": "file://computer.svg",
+    "default": "H.264 720p",
+    "presets": [
+        {
+            "name": "Theora 1080p",
+            "container": "oggmux",
+            "extension": "ogv",
+            "vcodec": {
+                "name": "theoraenc",
+                "container": "oggmux",
+                "width": [
+                    1440, 1920
+                ],
+                "height": [
+                    1080, 1080
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "border=0 quality=40 keyframe-freq=30"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "oggmux",
+                "width": [
+                    8,
+                    32
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    2
+                ],
+                "passes": [
+                    "quality=0.5"
+                ]
+            }
+        },
+        {
+            "name": "H.264 1080p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    1440, 1920
+                ],
+                "height": [
+                    1080, 1080
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=qual quantizer=21 me=umh subme=6 ref=3 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+        {
+            "name": "WebM 1080p",
+            "container": "webmmux",
+            "extension": "webm",
+            "icon": "file://computer-webm.svg",
+            "vcodec": {
+                "name": "vp8enc",
+                "container": "webmmux",
+                "width": [
+                    1440, 1920
+                ],
+                "height": [
+                    1080, 1080
+                ],
+                "rate": [
+                    1, 60
+                ],
+                "passes": [
+                    "quality=6 threads=%(threads)s speed=2"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "webmmux",
+                "width": [
+                    8, 32
+                ],
+                "depth": [
+                    8, 24
+                ],
+                "rate": [
+                    8000, 96000
+                ],
+                "channels": [
+                    1, 2
+                ],
+                "passes": [
+                    "quality=0.4"
+                ]
+            }
+        },
+        {
+            "name": "Live Input 1080p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "icon": "file://computer-live.svg",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    1440, 1920
+                ],
+                "height": [
+                    1080, 1080
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=cbr bitrate=2048 subme=4 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+
+        {
+            "name": "Theora 720p",
+            "container": "oggmux",
+            "extension": "ogv",
+            "vcodec": {
+                "name": "theoraenc",
+                "container": "oggmux",
+                "width": [
+                    960, 1280
+                ],
+                "height": [
+                    720, 720
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "border=0 quality=40 keyframe-freq=30"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "oggmux",
+                "width": [
+                    8,
+                    32
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    2
+                ],
+                "passes": [
+                    "quality=0.5"
+                ]
+            }
+        },
+        {
+            "name": "H.264 720p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    960, 1280
+                ],
+                "height": [
+                    720, 720
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=qual quantizer=21 me=umh subme=6 ref=3 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+        {
+            "name": "WebM 720p",
+            "container": "webmmux",
+            "extension": "webm",
+            "icon": "file://computer-webm.svg",
+            "vcodec": {
+                "name": "vp8enc",
+                "container": "webmmux",
+                "width": [
+                    960, 1280
+                ],
+                "height": [
+                    720, 720
+                ],
+                "rate": [
+                    1, 60
+                ],
+                "passes": [
+                    "quality=6 threads=%(threads)s speed=2"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "webmmux",
+                "width": [
+                    8, 32
+                ],
+                "depth": [
+                    8, 24
+                ],
+                "rate": [
+                    8000, 96000
+                ],
+                "channels": [
+                    1, 2
+                ],
+                "passes": [
+                    "quality=0.4"
+                ]
+            }
+        },
+        {
+            "name": "Live Input 720p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "icon": "file://computer-live.svg",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    960, 1280
+                ],
+                "height": [
+                    720, 720
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=cbr bitrate=2048 subme=4 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+
+        {
+            "name": "Theora 576p",
+            "container": "oggmux",
+            "extension": "ogv",
+            "vcodec": {
+                "name": "theoraenc",
+                "container": "oggmux",
+                "width": [
+                    768, 1024
+                ],
+                "height": [
+                    576, 576
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "border=0 quality=40 keyframe-freq=30"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "oggmux",
+                "width": [
+                    8,
+                    32
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    2
+                ],
+                "passes": [
+                    "quality=0.5"
+                ]
+            }
+        },
+        {
+            "name": "H.264 576p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    768, 1024
+                ],
+                "height": [
+                    576, 576
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=qual quantizer=21 me=umh subme=6 ref=3 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+        {
+            "name": "WebM 576p",
+            "container": "webmmux",
+            "extension": "webm",
+            "icon": "file://computer-webm.svg",
+            "vcodec": {
+                "name": "vp8enc",
+                "container": "webmmux",
+                "width": [
+                    768, 1024
+                ],
+                "height": [
+                    576, 576
+                ],
+                "rate": [
+                    1, 60
+                ],
+                "passes": [
+                    "quality=6 threads=%(threads)s speed=2"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "webmmux",
+                "width": [
+                    8, 32
+                ],
+                "depth": [
+                    8, 24
+                ],
+                "rate": [
+                    8000, 96000
+                ],
+                "channels": [
+                    1, 2
+                ],
+                "passes": [
+                    "quality=0.4"
+                ]
+            }
+        },
+        {
+            "name": "Live Input 576p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "icon": "file://computer-live.svg",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    768, 1024
+                ],
+                "height": [
+                    576, 576
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=cbr bitrate=2048 subme=4 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+
+        {
+            "name": "Theora 480p",
+            "container": "oggmux",
+            "extension": "ogv",
+            "vcodec": {
+                "name": "theoraenc",
+                "container": "oggmux",
+                "width": [
+                    640, 854
+                ],
+                "height": [
+                    480, 480
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "border=0 quality=40 keyframe-freq=30"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "oggmux",
+                "width": [
+                    8,
+                    32
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    2
+                ],
+                "passes": [
+                    "quality=0.5"
+                ]
+            }
+        },
+        {
+            "name": "H.264 480p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    640, 854
+                ],
+                "height": [
+                    480, 480
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=qual quantizer=21 me=umh subme=6 ref=3 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+        {
+            "name": "WebM 480p",
+            "container": "webmmux",
+            "extension": "webm",
+            "icon": "file://computer-webm.svg",
+            "vcodec": {
+                "name": "vp8enc",
+                "container": "webmmux",
+                "width": [
+                    640, 854
+                ],
+                "height": [
+                    480, 480
+                ],
+                "rate": [
+                    1, 60
+                ],
+                "passes": [
+                    "quality=6 threads=%(threads)s speed=2"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "webmmux",
+                "width": [
+                    8, 32
+                ],
+                "depth": [
+                    8, 24
+                ],
+                "rate": [
+                    8000, 96000
+                ],
+                "channels": [
+                    1, 2
+                ],
+                "passes": [
+                    "quality=0.4"
+                ]
+            }
+        },
+        {
+            "name": "Live Input 480p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "icon": "file://computer-live.svg",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    640, 854
+                ],
+                "height": [
+                    480, 480
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=cbr bitrate=2048 subme=4 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+
+        {
+            "name": "Theora 360p",
+            "container": "oggmux",
+            "extension": "ogv",
+            "vcodec": {
+                "name": "theoraenc",
+                "container": "oggmux",
+                "width": [
+                    480, 640
+                ],
+                "height": [
+                    360, 360
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "border=0 quality=40 keyframe-freq=30"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "oggmux",
+                "width": [
+                    8,
+                    32
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    2
+                ],
+                "passes": [
+                    "quality=0.5"
+                ]
+            }
+        },
+        {
+            "name": "H.264 360p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    480, 640
+                ],
+                "height": [
+                    360, 360
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=qual quantizer=21 me=umh subme=6 ref=3 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        },
+        {
+            "name": "WebM 360p",
+            "container": "webmmux",
+            "extension": "webm",
+            "icon": "file://computer-webm.svg",
+            "vcodec": {
+                "name": "vp8enc",
+                "container": "webmmux",
+                "width": [
+                    480, 640
+                ],
+                "height": [
+                    360, 360
+                ],
+                "rate": [
+                    1, 60
+                ],
+                "passes": [
+                    "quality=6 threads=%(threads)s speed=2"
+                ]
+            },
+            "acodec": {
+                "name": "vorbisenc",
+                "container": "webmmux",
+                "width": [
+                    8, 32
+                ],
+                "depth": [
+                    8, 24
+                ],
+                "rate": [
+                    8000, 96000
+                ],
+                "channels": [
+                    1, 2
+                ],
+                "passes": [
+                    "quality=0.4"
+                ]
+            }
+        },
+        {
+            "name": "Live Input 360p",
+            "container": "qtmux",
+            "extension": "mp4",
+            "icon": "file://computer-live.svg",
+            "vcodec": {
+                "name": "x264enc",
+                "container": "qtmux",
+                "width": [
+                    480, 640
+                ],
+                "height": [
+                    360, 360
+                ],
+                "rate": [
+                    1,
+                    30
+                ],
+                "passes": [
+                    "pass=cbr bitrate=2048 subme=4 threads=0"
+                ]
+            },
+            "acodec": {
+                "name": "faac",
+                "container": "qtmux",
+                "width": [
+                    8,
+                    24
+                ],
+                "depth": [
+                    8,
+                    24
+                ],
+                "rate": [
+                    8000,
+                    96000
+                ],
+                "channels": [
+                    1,
+                    6
+                ],
+                "passes": [
+                    "bitrate=192000"
+                ]
+            }
+        }
+    ]
+}
