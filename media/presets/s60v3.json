@@ -1,0 +1,54 @@
+{
+    "make": "Nokia S60v3", 
+    "model": "5320", 
+    "description": "H264 320x240/AAC 128", 
+    "version": "1.0", 
+    "author": {
+        "name": "thyranus", 
+        "email": "thyranus2003@yahoo.com.ar"
+    }, 
+    "icon": "file://s60v3.jpg",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "qtmux", 
+                "width": [
+                    120, 320
+                ], 
+                "height": [
+                    120, 240
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=qual quantizer=19 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
