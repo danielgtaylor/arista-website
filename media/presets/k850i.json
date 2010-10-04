@@ -1,0 +1,54 @@
+{
+    "make": "Sony Ericsson", 
+    "model": "K850i", 
+    "description": "MP4 Sony Ericsson 320x240", 
+    "version": "1.0", 
+    "author": {
+        "name": "Oleksandr", 
+        "email": "tokar.oleksandr@runge.bb.lo-net2.de"
+    }, 
+    "icon": "file://k850i.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "qtmux", 
+                "width": [
+                    320,320
+                ], 
+                "height": [
+                    240,240
+                ], 
+                "rate": [
+                    15, 25
+                ], 
+                "passes": [
+                    "pass=qual quantizer=19 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
