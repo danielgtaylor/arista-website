@@ -1,0 +1,54 @@
+{
+    "make": "DVD Player", 
+    "model": "SVCD", 
+    "description": "Super Video CD for DVD Player", 
+    "version": "1.0", 
+    "author": {
+        "name": "jEsuSdA 8)", 
+        "email": "info@jesusda.com"
+    }, 
+    "icon": "file://svcd.svg",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mpg", 
+            "container": "mpegtsmux", 
+            "vcodec": {
+                "name": "mpeg2enc", 
+                "container": "mpegtsmux", 
+                "width": [
+                    320, 480
+                ], 
+                "height": [
+                    240, 576
+                ], 
+                "rate": [
+                    1, 25
+                ], 
+                "passes": [
+                    "format=9 bitrate=2500"
+                ]
+            }, 
+            "acodec": {
+                "name": "lame", 
+                "container": "", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=224"
+                ]
+            }
+        }
+    ]
+}
