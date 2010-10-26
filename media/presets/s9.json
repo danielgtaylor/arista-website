@@ -1,0 +1,54 @@
+{
+    "make": "Cowon", 
+    "model": "S9", 
+    "description": "Cowon S9 Audio/Video Player", 
+    "version": "1.0", 
+    "author": {
+        "name": "David Daester", 
+        "email": "dfd1985@gmail.com"
+    }, 
+    "icon": "file://s9.jpg",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "avi", 
+            "container": "avimux", 
+            "vcodec": {
+                "name": "xvidenc", 
+                "container": "avimux", 
+                "width": [
+                    320, 480
+                ], 
+                "height": [
+                    240, 272
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=quant quantizer=5 max-bframes=0 trellis=true"
+                ]
+            }, 
+            "acodec": {
+                "name": "lame", 
+                "container": "", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=160"
+                ]
+            }
+        }
+    ]
+}
