@@ -1,0 +1,54 @@
+{
+    "make": "Blackberry", 
+    "model": "8520", 
+    "description": "MPEG-4/MP3 ", 
+    "version": "1.0", 
+    "author": {
+        "name": "diego2k", 
+        "email": "diego2k@gmail.com"
+    }, 
+    "icon": "file://blackberry.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "avi", 
+            "container": "avimux", 
+            "vcodec": {
+                "name": "xvidenc", 
+                "container": "avimux", 
+                "width": [
+                    240, 240
+                ], 
+                "height": [
+                    135, 180
+                ], 
+                "rate": [
+                    1, 24
+                ], 
+                "passes": [
+                    "pass=quant quantizer=5 max-bframes=0 trellis=true"
+                ]
+            }, 
+            "acodec": {
+                "name": "lame", 
+                "container": "", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=128"
+                ]
+            }
+        }
+    ]
+}
