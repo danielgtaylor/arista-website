@@ -1,0 +1,54 @@
+{
+    "make": "XBMC", 
+    "model": "Xbox", 
+    "description": "Xvid + MP3 for XBMC for Xbox", 
+    "version": "1.0", 
+    "author": {
+        "name": "Glen Porritt", 
+        "email": "glen.porritt@gmail.com"
+    }, 
+    "icon": "file://xbmc4xbox.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "avi", 
+            "container": "avimux", 
+            "vcodec": {
+                "name": "xvidenc", 
+                "container": "avimux", 
+                "width": [
+                    640, 1920
+                ], 
+                "height": [
+                    480, 1080
+                ], 
+                "rate": [
+                    21, 30
+                ], 
+                "passes": [
+                    "pass=quant quantizer=8 max-bframes=0 trellis=true"
+                ]
+            }, 
+            "acodec": {
+                "name": "lame", 
+                "container": "", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=128"
+                ]
+            }
+        }
+    ]
+}
