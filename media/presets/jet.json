@@ -1,0 +1,54 @@
+{
+    "make": "Samsung", 
+    "model": "Jet S8000", 
+    "description": "H264+AAC for Samsung Jet S8000", 
+    "version": "1.0", 
+    "author": {
+        "name": "Leonardo Eguia", 
+        "email": "leguia@ie3.com"
+    }, 
+    "icon": "file://jet.gif",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "qtmux", 
+                "width": [
+                    640, 720
+                ], 
+                "height": [
+                    480, 406
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=qual quantizer=21 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
