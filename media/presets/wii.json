@@ -1,0 +1,54 @@
+{
+    "make": "Nintendo", 
+    "model": "Wii", 
+    "description": "Nintendo Wii WiiMC", 
+    "version": "1.0", 
+    "author": {
+        "name": "jon", 
+        "email": "jonan_pakete@gawab.com"
+    }, 
+    "icon": "file://wii.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "avi", 
+            "container": "avimux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "avimux", 
+                "width": [
+                    700, 720
+                ], 
+                "height": [
+                    550, 576
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=qual quantizer=19 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "avimux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
