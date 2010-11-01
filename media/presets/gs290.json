@@ -1,0 +1,54 @@
+{
+    "make": "LG", 
+    "model": "GS290", 
+    "description": "MPEG4 for LG GS290 mobile phone", 
+    "version": "1.0", 
+    "author": {
+        "name": "Richard Eszes", 
+        "email": "mobil@eszes.info"
+    }, 
+    "icon": "file://gs290.jpg",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "qtmux", 
+                "width": [
+                    1,240
+                ], 
+                "height": [
+                    1,400
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=qual quantizer=21 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=131072 profile=LC"
+                ]
+            }
+        }
+    ]
+}
