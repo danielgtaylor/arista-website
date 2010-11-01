@@ -1,0 +1,54 @@
+{
+    "make": "Sony Ericsson", 
+    "model": "Vivaz", 
+    "description": "H.264 for Vivaz", 
+    "version": "1.0", 
+    "author": {
+        "name": "Moreno", 
+        "email": "morrolinux@gmail.com"
+    }, 
+    "icon": "file://vivaz.png",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "qtmux", 
+                "width": [
+                    120, 1280
+                ], 
+                "height": [
+                    120, 720
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=qual quantizer=18 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=327680 profile=LC"
+                ]
+            }
+        }
+    ]
+}
