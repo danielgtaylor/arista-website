@@ -1,0 +1,54 @@
+{
+    "make": "Apple", 
+    "model": "AppleTV", 
+    "description": "H.264/AAC in MP4 for AppleTV", 
+    "version": "1.0", 
+    "author": {
+        "name": "TCH", 
+        "email": "tch@capitalisthacker.org"
+    }, 
+    "icon": "file://appletv.svg",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "mp4", 
+            "container": "qtmux", 
+            "vcodec": {
+                "name": "x264enc", 
+                "container": "qtmux", 
+                "width": [
+                    320, 640
+                ], 
+                "height": [
+                    240, 480
+                ], 
+                "rate": [
+                    1, 30
+                ], 
+                "passes": [
+                    "pass=qual quantizer=19 subme=6 cabac=0 threads=0"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "qtmux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=163840 profile=LC"
+                ]
+            }
+        }
+    ]
+}
