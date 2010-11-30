@@ -1,0 +1,54 @@
+{
+    "make": "HTC", 
+    "model": "Touch (Elf)", 
+    "description": "avi", 
+    "version": "1.0", 
+    "author": {
+        "name": "Gremlin_ZP", 
+        "email": "glser@list.ru"
+    }, 
+    "icon": "file://htctouch.ico",
+    "default": "Normal", 
+    "presets": [
+        {
+            "name": "Normal", 
+            "extension": "avi", 
+            "container": "avimux", 
+            "vcodec": {
+                "name": "xvidenc", 
+                "container": "avimux", 
+                "width": [
+                    320,320
+                ], 
+                "height": [
+                    220,240
+                ], 
+                "rate": [
+                    25,25
+                ], 
+                "passes": [
+                    "pass=quant quantizer=5 max-bframes=0 trellis=true"
+                ]
+            }, 
+            "acodec": {
+                "name": "faac", 
+                "container": "avimux", 
+                "width": [
+                    8, 32
+                ], 
+                "depth": [
+                    8, 24
+                ], 
+                "rate": [
+                    8000, 96000
+                ], 
+                "channels": [
+                    1, 2
+                ], 
+                "passes": [
+                    "bitrate=98304 profile=LC"
+                ]
+            }
+        }
+    ]
+}
