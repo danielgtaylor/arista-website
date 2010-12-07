@@ -79,6 +79,7 @@ class PresetForm(forms.Form):
             "avimux": "avi",
             "ffmux_dvd": "mpg",
             "oggmux": "ogg",
+            "webmmux": "webm",
         }.get(self.cleaned_data["container"], "mp4")
     
     @property
