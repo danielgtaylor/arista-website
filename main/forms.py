@@ -128,7 +128,7 @@ class PresetForm(forms.Form):
         
         return {
             "x264enc": "pass=qual quantizer=%d subme=6 cabac=0 threads=0" % self.x264_video_quality,
-            "vp8enc": "quality=%d threads=%%(threads)s" % self.vp8_video_quality,
+            "vp8enc": "quality=%d threads=%%(threads)s speed=2" % self.vp8_video_quality,
             "xvidenc": "pass=quant quantizer=%d max-bframes=0 trellis=true" % self.xvid_video_quality,
             "mpeg2enc": "format=9 bitrate=%s" % self.cleaned_data["video_bitrate"],
             "theoraenc": "border=0 quality=%d keyframe-freq=30" % self.theora_video_quality,
