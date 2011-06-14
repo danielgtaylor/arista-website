@@ -87,7 +87,7 @@ button:hover, .button:hover {
     width: 120px;
     text-shadow: black 1px 1px 0px;
     border: 2px solid white;
-    box-shadow: 10px 10px 5px #888;
+    box-shadow: 3px 3px 5px #333;
 }
 
 .info {
