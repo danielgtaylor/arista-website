@@ -6,9 +6,6 @@
     <p class="right">
         <a class="button" href="/presets/submit/" title="Submit a new preset for this page">Submit</a>
     </p>
-    <p class="right" style="margin-right: 1em;">
-        <a class="button" href="/presets/create/" title="Create a new preset for your device">Create</a>
-    </p>
     <h1>Device Presets</h1>
     {% if request.GET.thanks %}
         <p><span class="info">Thanks for the submission! You will receive an email within a day or two.</span></p>
@@ -35,7 +32,7 @@
         {% endfor %}
     </table>
     <p class="note">
-        Note: Arista Transcoder ships with some of these presets already installed, and should update any installed presets automatically. They are listed here so that you can update them manually if needed.
+        Note: Arista Transcoder ships with some of these presets already installed. They are listed here so that you can update them manually if needed.
         <br/><br/>
         Click on a preset name to download it. Install via the <em>File -> Install device preset</em> menu item in Arista Transcoder.
     </p>
