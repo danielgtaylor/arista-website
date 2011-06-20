@@ -8,7 +8,9 @@
         Galleria.loadTheme('{{ MEDIA_URL }}js/galleria/themes/classic/galleria.classic.js');
         
         $(document).ready(function () {
-            $('.gallery').galleria();
+            $('.gallery').galleria({
+                'max_scale_ratio': 1.0
+            });
         })
     </script>
 {% endblock %}
