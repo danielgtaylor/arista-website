@@ -1,0 +1,1455 @@
+2011-06-20  Daniel G. Taylor <dan@programmer-art.org>
+
+  * setup.py: Fail gracefully if byte-compiling doesn't work on install
+
+  * arista-gtk: Remove debug print statement
+
+  * locale/ar/LC_MESSAGES/arista.mo, locale/ast/LC_MESSAGES/arista.mo,
+  locale/bg/LC_MESSAGES/arista.mo, locale/ca/LC_MESSAGES/arista.mo,
+  locale/cs/LC_MESSAGES/arista.mo, locale/da/LC_MESSAGES/arista.mo,
+  locale/de/LC_MESSAGES/arista.mo, locale/el/LC_MESSAGES/arista.mo,
+  locale/en_GB/LC_MESSAGES/arista.mo, locale/es/LC_MESSAGES/arista.mo,
+  locale/et/LC_MESSAGES/arista.mo, locale/eu/LC_MESSAGES/arista.mo,
+  locale/fi/LC_MESSAGES/arista.mo, locale/fr/LC_MESSAGES/arista.mo,
+  locale/gl/LC_MESSAGES/arista.mo, locale/hu/LC_MESSAGES/arista.mo,
+  locale/ia/LC_MESSAGES/arista.mo, locale/id/LC_MESSAGES/arista.mo,
+  locale/it/LC_MESSAGES/arista.mo, locale/ja/LC_MESSAGES/arista.mo,
+  locale/jv/LC_MESSAGES/arista.mo, locale/kn/LC_MESSAGES/arista.mo,
+  locale/lt/LC_MESSAGES/arista.mo, locale/nl/LC_MESSAGES/arista.mo,
+  locale/pl/LC_MESSAGES/arista.mo, locale/pt/LC_MESSAGES/arista.mo,
+  locale/pt_BR/LC_MESSAGES/arista.mo, locale/ro/LC_MESSAGES/arista.mo,
+  locale/ru/LC_MESSAGES/arista.mo, locale/sk/LC_MESSAGES/arista.mo,
+  locale/sl/LC_MESSAGES/arista.mo, locale/sr/LC_MESSAGES/arista.mo,
+  locale/sv/LC_MESSAGES/arista.mo, locale/templates/arista.pot,
+  locale/th/LC_MESSAGES/arista.mo, locale/tr/LC_MESSAGES/arista.mo,
+  locale/uk/LC_MESSAGES/arista.mo, locale/zh_CN/LC_MESSAGES/arista.mo,
+  locale/zh_TW/LC_MESSAGES/arista.mo: Update translations from Launchpad
+
+2011-06-19  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-gtk: Fix output file naming when input path isn't the same as the
+  output directory, also fixes naming and overwriting of inputs from dvd and
+  v4l sources.
+
+  * arista-gtk: Reorganize preset selection code based on mouse coordinates on
+  the logo widget, change drag and drop to only work on the logo widget and
+  preview widget and make it sensitive to the location that was dropped on,
+  defaulting to WebM if no preset icon was dropped on.
+
+2011-06-18  Daniel G. Taylor <dan@programmer-art.org>
+
+  * README.md: Add link to translations pages on Launchpad so they are easier
+  to find
+
+  * arista-gtk: Modify logo widget to listen to button click events, have the
+  main window listen for clicks and when one of the icons in the logo is
+  clicked open the create conversion dialog with the corresponding preset
+  selected. This should serve as a nice shortcut and help remove new user
+  confusion as they may expect something to happen when clicking the icons in
+  logo. Thanks to Primoz Verdnik for the user experience help.
+
+2011-06-17  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista/queue.py: Make sure to remove failed items from the queue after they
+  error out, and set the pipe to not running so that the next item will start
+  processing. Thanks to Bram Avontuur for pointing out this issue to me.
+
+  * ui/main.ui: Change cancel button on main dialog to be the media stop button
+  instead, as really we are stopping a job. The data transcoded so far will
+  still work, and nothing is undone as cancel may imply. This also makes more
+  sense when talking about live input sources that have no end. You aren't
+  canceling them so much as stopping the conversion.
+
+  * arista-gtk: Small cleanup - emove some old code that is no longer used
+
+  * arista-gtk: Disable create button when no DVD is actually inserted,
+  prevents accidentally starting DVD jobs and having them error out right away
+
+  * arista/transcoder.py: Add tolerance value to audiorate element by default.
+  This fixes some audio glitch issues, in particular from WMV input files.
+  Fixes issue #12
+
+  * presets/apple.json: Update Apple iOS presets to ease up on reference frames
+  and set the x264 profile, which should limit the use of bframes and fix #79
+  for GStreamer 0.10.32
+
+2011-06-16  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-gtk: Implement basic drag and drop of single files and directories
+  onto the main window. Multiple files currently does not work and requires
+  larger changes.
+
+  * arista-gtk: Fix icon size being used to lookup icons - makes file type
+  icons and some other icons like the dvd disc show up properly in the source
+  selector
+
+  * arista-gtk: GTK GUI now runs reniced to +5 by default, which should allow
+  other programs to take priority while transcodes are going on, making the
+  system feel overall snappier on many different schedulers. Fixes issue #23.
+
+  * arista-gtk: Handle bad values for icon in case of e.g. messed up tar file
+  or user-modified json with errors
+
+  * arista-gtk: Fix issue #7 - problem importing preset with apparently invalid
+  value for icon
+
+  * presets/playstation.json: Update PSP preset to force 30 frames per second,
+  which is apparently required for some PSP versions according to issue #49
+
+  * arista-gtk, help/ac-3.html, help/mp2.html, presets/dvd.json: Add MP2 and
+  AC-3 audio formats, update DVD preset to use MP2 instead of MP3 as the audio
+  format as this is what it should have used all along, whoops. Thanks to
+  guiodic for the bug report.
+
+2011-06-15  Daniel G. Taylor <dan@programmer-art.org>
+
+  * help/style.css: Update help file style by adding slight rounded corners and
+  text shadows
+
+  * MANIFEST.in: Make sure to include CSS for help files when creating
+  distributable archives for installation
+
+  * locale/templates/arista.pot: Update translation template to include new
+  preset reset functionality
+
+  * utils/update_translation.sh: Fix small bug in translation update script
+
+  * arista-gtk, arista-transcode, arista/presets.py, ui/prefs.ui: Add a method
+  to completely reset default presets, add button to do so from GTK prefs
+  dialog and an argument to do so via arista-transcode
+
+  * arista/presets.py: Use set to find images when exporting a device preset so
+  that a file doesn't get added to the archive multiple times, which causes
+  issues when importing
+
+  * arista-gtk: Fix issue where single file conversions wouldn't use the
+  destination folder that was selected
+
+  * arista-gtk: Add VP8 codec support for AVI container
+
+  * arista-gtk, help/flac.html: Add FLAC audio codec support to UI
+
+  * arista-gtk: Rename MPEG2 PS and TS to just MPEG PS and TS, which is more
+  consistent with how other apps name them
+
+  * ui/props.ui: Fix translation bug, patch by Bastien Nocera
+
+  * ui/logo.svg: Update logo to include iPad and Android phone, removing older
+  iPod and phone images
+
+  * ui/prefs.ui: Cleanup preferences dialog spacing and default width/height
+
+  * arista/discoverer.py: Check for and gracefully handle index errors while
+  trying to find usable capabilities objects in discoverer
+
+  * arista/discoverer.py: Update discoverer to not assume all required
+  information will be in the first caps element. It seems for some files it may
+  come later, so iterate over caps until we find what we need to get the
+  width/height/etc of media files
+
+2011-06-14  Daniel G. Taylor <dan@programmer-art.org>
+
+  * presets/android-galaxy-s.png, presets/ipod-video.svg, presets/web.svg,
+  ui/icon-badge.svg, ui/icon-small.svg, ui/icon.svg: Optimize logo, application
+  icon, and several larger preset icons to drastically lower file size of the
+  Arista distribution and install files
+
+  * setup.py: Fix typo in setup script
+
+  * locale/templates/arista.pot, utils/update_translation.sh: Update
+  translation generation script and translation to remove duplicates by using
+  the xgettext -j option to join PO template files properly
+
+  * locale/templates/arista.pot: Update translation template
+
+  * arista-gtk, ui/main.ui: Add menu item and toolbar button to take user to
+  presets page online so they can download new presets easily as this function
+  was taken out by the new add dialog
+
+  * presets/computer.json, presets/web.json: Update computer and web presets to
+  show how preset-level descriptions work
+
+  * arista-transcode: Add preset descriptions to arista-transcode info output
+
+  * README.md: Add instructions for trying out the latest version from git
+
+  * presets/android.json: Update Android presets by adding profile constraints
+  which seem to prevent choppy playback and errors according to many users
+
+  * arista/transcoder.py: Apply pixel aspect ratio to original width instead of
+  after width calculations are completed. This prevents issues where the PAR
+  would modify the width to an invalid value after calculation. Patch by
+  kogechanotaremimiusagi
+
+2011-06-13  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-transcode: Don't require the entire preset name, just the first few
+  characters to make fetching preset info easier
+
+  * locale/templates/arista.pot: Update translation template with new strings
+
+  * README.md, arista-transcode: Add some more useful info to the
+  arista-transcode -i option, update docs to reflect recent changes in preset
+  names and options
+
+  * help/404.html, help/aac.html, help/flv.html, help/h.264.html,
+  help/mp3.html, help/mpeg2.html, help/mpeg4.html, help/style.css,
+  help/theora.html, help/vorbis.html, help/vp8.html: Control iframe height in
+  help files via css rather than in each help file, and set a specific height
+  to fix a bug where part of the common options documentation was hidden from
+  view
+
+  * ui/codec.ui: Add border around web view for codec help dialog
+
+2011-06-12  Daniel G. Taylor <dan@programmer-art.org>
+
+  * ui/prefs.ui: Update default size of preferences window to be slightly
+  smaller due to the removal of some preferences
+
+  * ui/add.ui: Change the type hint of the add window so that it doesn't try to
+  stay on top of other windows, which was causing problems with the e.g. input
+  properties dialog
+
+  * arista-gtk: Fix typo causing error messages when changing audio codec
+
+  * arista-gtk: Fix FLV supported codecs to match the proper strings
+
+  * arista-gtk: Don't modify the last used folder when selecting icons for
+  presets, and instead of preloading the last used path [which usually will be
+  for videos] just set the default path to the user's pictures folder which is
+  more likely to contain icons
+
+  * arista-gtk, ui/preset.ui: Add extension to preset dialog so that it can be
+  edited, which might be useful when doing e.g. MOV but naming the files m4v
+
+  * arista-gtk: Remove large chunk of code that is no longer used
+
+  * arista/presets.py: Make sure to reset the current working directory after
+  export
+
+  * arista-gtk: Cleanup export a bit and make it more informative about what is
+  going to happen when multiple presets share the same short name
+
+2011-06-11  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-gtk, arista/presets.py, ui/preset.ui: Implement exporting of device
+  presets. Currently this exports all presets for a particular device into a
+  single file, which may turn out to be confusing
+
+  * arista/utils.py: Update search path order to make sure /usr/local comes
+  before /usr
+
+2011-06-10  Daniel G. Taylor <dan@programmer-art.org>
+
+  * ui/preset.ui: Swap audio and video tabs in the preset dialog so that video
+  options are first
+
+  * arista-gtk, ui/preset.ui: Make sure to store changes to the audio and video
+  options, whoops
+
+  * arista/presets.py: Fix bug causing element linking to fail after having
+  modified a preset due to not enforcing types properly on load. Also fixes a
+  small bug to only write out fractions when really needed.
+
+  * arista-transcode: Fix indentation error preventing arista-transcode from
+  working properly
+
+  * arista-gtk, arista-transcode, arista/presets.py, ui/prefs.ui: Remove the
+  ability to check for updates as this hasn't really been useful in the time it
+  has been available.
+
+  * README.md: Remove section in README on creating new device presets as this
+  is now handled in-app
+
+  * MANIFEST.in, setup.py: Make sure help files get installed
+
+  * arista-gtk: Update new preset default vcoded pass to match default computer
+  H.264 preset
+
+  * arista-gtk, ui/preset.ui: Make sure to update list view when icon changes,
+  created new preset dialog signal to handle this case
+
+  * arista-gtk: Implement adding new device presets in-app, small refactoring
+  and cleanup
+
+  * arista-gtk: Store underlying base model iter rather than filter iter for
+  preset changed signal so that when filtering or sorting the list view we
+  don't lose the ability to modify the preset iter in the list
+
+  * arista-gtk: Make sure width/height are set as integers
+
+  * arista-gtk: Set automatic sorting on add dialog presets list model
+
+  * arista-gtk: Update create dialog view as presets are modified in the preset
+  info and edit dialogs
+
+  * arista-gtk, arista/presets.py, ui/add.ui, ui/preset.ui: Implement changing
+  preset icons and changing preset shortnames in a hopefully not-to-confusing
+  way
+
+2011-06-09  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista/utils.py: Make sure directory for writeable paths is present before
+  returning the path
+
+  * arista/utils.py: Add utility method to get a writeable path for creating
+  new files using the default search path mechanism used to also load files
+
+2011-06-08  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-gtk, ui/preset.ui: Update the way handling of preset name changes
+  works to be more efficient, add dummy handlers for icon and shortname change
+
+  * help/flv.html, help/mpeg2.html: Codec documentation fixes
+
+  * README.md, arista-gtk, help/404.html, help/aac.html, help/common.html,
+  help/flv.html, help/h.264.html, help/mp3.html, help/mpeg2.html,
+  help/mpeg4.html, help/style.css, help/theora.html, help/vorbis.html,
+  help/vp8.html, ui/codec.ui, ui/preset.ui: Add codec-specific help dialog and
+  help files
+
+2011-06-06  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-gtk: Add FLV to known containers and codecs
+
+2011-06-05  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-gtk, ui/prefs.ui: Remove presets area in prefs as it is now replaced
+  by preset info/edit dialog
+
+  * arista-gtk, arista/presets.py, ui/add.ui, ui/preset.ui: Add button to
+  create new presets back in, add initial preset details dialog which shows
+  preset details but doesn't have editing properly implemented yet
+
+2011-05-27  Daniel G. Taylor <dan@programmer-art.org>
+
+  * arista-gtk: Remove unused stubs from arista-gtk for old queue events
+
+  * setup.py: Respect Python's byte-compiling settings, fixes some issues for
+  Gentoo, thanks to ford-prefect
+
+  * arista-transcode: Fix issue #81 with accented unicode characters
+
+  * README.md: Add Fedora-specific instructions to README, thanks valentt
+
+  * presets/nokia-nseries.json: Updated N900 preset from Sergey 'Shnatsel'
+  Davidoff - thanks
+
+  * arista-nautilus.py: Cosmetic: Remove extra space in nautlius script
+
+  * arista-transcode, arista/inputs/__init__.py, arista/inputs/haldisco.py,
+  arista/inputs/udevdisco.py, arista/presets.py, arista/queue.py,
+  arista/transcoder.py, arista/utils.py: Update copyrights for new release
+
+  * presets/android.json, presets/computer.json, presets/playstation.json:
+  Preset updates including small version bumps
+
+  * presets/playstation.json: Fix default playstation preset to be for PS3
+
+  * arista-gtk: Fix crasher caused by shuffling around code
+
+2011-01-23  Benedikt Morbach <benedikt.morbach@googlemail.com>
+
+  * arista-transcode: Add initial support for cropping to arista-transcode 
+  This just adds a --crop/-c parameter, taking 4 space separeted integers. The
+  values represent: top, right, bottom, left - in that order. The values are
+  requierd to be positive and this is checked for. 
+
+  * arista/transcoder.py: Initial implenentation of cropping in transcoder.py 
+  This adds a new crop option to TranscoderOptions. crop is expected to be a
+  tuple of 4 ints, but could maybe be changed to allow other values such as
+  "auto" 
+
+2011-01-24  Daniel G. Taylor <dan@programmer-art.org>
+
+  * README.md, arista-gtk, arista/__init__.py, presets/android.json,
+  presets/apple.json, presets/computer.json, presets/ipad.json,
+  presets/ipod.json, presets/nokia-nseries.json, presets/playstation.json,
+  presets/ps3.json, presets/psp.json, setup.py, ui/about.ui, ui/add.ui,
+  ui/main.ui: Major UI update: simplify main dialog, create separate dialog for
+  adding conversion jobs, remove the queue display as it was hardly used and
+  instead put the number of files left in the progress bar, move the pause
+  button from the main toolbar to the same place as the cancel button which
+  only shows when a job is running.
+
+2011-01-10  Vladimir Ugrumov <alkesta007@yandex.ru>
+
+  * presets/psp.json: Fix issue #49 (H.264/MPEG-4 AVC Main Profile Level 3 Sony
+  edition - max references must be <=3 and bpyramid none) Tested on PSP 3001
+  Firmware 6.20
+
+2011-01-08  Vladimir <alkesta007@yandex.ru>
+
+  * presets/psp.json: Fix issue #49. Tested on PSP 3001 Firmware 6.20
+
+2010-12-31  Akeem McLennon <akeem@mclennon.com>
+
+  * arista/transcoder.py: Another attempt at assrender
+
+  * arista/transcoder.py: Accidentally changed URI to files:// instead of
+  file://
+
+2010-12-30  Akeem McLennon <akeem@mclennon.com>
+
+  * arista/transcoder.py: -Remove an unncessary print message
+
+  * arista/discoverer.py, arista/transcoder.py: Convert to absolute paths
+  during URI conversion (fixes  danielgtaylor/arista#47)
+
+  * arista-transcode, arista/transcoder.py: --Add support for embedded ssa
+  subtitles in mkv files --Add --ssa option (-e) to cli transcoder
+
+2010-12-29  danielgtaylor <dan@programmer-art.org>
+
+  * arista.desktop: Add mimetype to .desktop file so that nautilus offers to
+  open Arista for DVDs and VCDs when inserted, patch by karlrelton, fixes issue
+  #40
+
+  * arista-gtk: Show simplified GTK interface centered so that conversions from
+  nautilus don't show up in random locations on the screen
+
+  * setup.py: Small fix if no root path is specified, for some versions of
+  python self.root would be None rather than a blank string
+
+2010-12-27  Dominique Leuenberger <dominique@leuenberger.net>
+
+  * setup.py: Fix issue #14: - Allow byte_compiling when installing to root !=
+  / - Move the extension to /usr/share/nautilus-python/extensions
+
+2010-12-22  danielgtaylor <dan@programmer-art.org>
+
+  * README.md, arista/__init__.py, setup.py, ui/about.ui: Update version to
+  0.9.6
+
+2010-12-07  danielgtaylor <dan@programmer-art.org>
+
+  * presets/android-galaxy-s.png, presets/android.json: Add Samsung Galaxy S
+  series support in Android presets, patch by Pierre Pericard
+
+2010-11-30  danielgtaylor <dan@programmer-art.org>
+
+  * presets/android.json, presets/droidx.png: Add update for Droid X preset to
+  Android presets by Vick
+
+2010-10-26  danielgtaylor <dan@programmer-art.org>
+
+  * ui/about.ui, ui/icon-badge.svg, ui/icon-small.svg, ui/icon.svg: Add new
+  application icon by Sibrand Hoekstra, added to the about dialog credits
+
+2010-10-18  Cristian C. Ferreira <cristianfere@gmail.com>
+
+  * arista-gtk: Automaticaly add subtitles when possibly: issue #33 on github
+
+2010-10-04  danielgtaylor <dan@programmer-art.org>
+
+  * presets/nokia-n900.svg, presets/nokia-nseries.json: Add N900 icon and MPEG4
+  preset from Abimanyu G
+
+2010-09-17  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk: Prevent a crash when a preset's icon is missing after a job has
+  run in the GTK+ client as it tries to show a notification.
+
+2010-09-01  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk, ui/error.svg: Fix issue #27 - use theme dialog error icon
+  instead of static icon that might be confused
+
+2010-08-30  danielgtaylor <dan@programmer-art.org>
+
+  * presets/computer.json, presets/web.json: Update computer and web presets to
+  also use mp4mux instead of qtmux, and web presets to faststart the mp4 file
+  so no other tools are required.
+
+  * presets/android.json: Fix container format for Android phones by using
+  mp4mux instead of qtmux, patch by mdeslaur
+
+2010-08-20  Michael Monreal <michael.monreal@gmail.com>
+
+  * arista-gtk: Header case for 'Choose file/directory'
+
+  * ui/prefs.ui: Remove redundant header label on preset page
+
+  * ui/prefs.ui: Make prefs dialog wider to avoid horizontal scrollbar
+
+  * arista-gtk, ui/main.ui: Change 'Stop' to 'Cancel' as the proccess cannot be
+  resumed
+
+  * ui/main.ui: Add toolbar tooltips
+
+  * ui/main.ui: HIG fixes for menu labels
+
+2010-07-26  Christian Kakesa <christian.kakesa@gmail.com>
+
+  * presets/android.json: Change qtmux muxer for mp4mux who works fine with
+  Samsung Spica audio AAC decoder
+
+2010-07-25  Christian Kakesa <christian.kakesa@gmail.com>
+
+  * presets/android-spica.png, presets/android.json: Add Samsung Spica in
+  Android preset file
+
+2010-07-08  danielgtaylor <dan@programmer-art.org>
+
+  * arista/transcoder.py: Start scanning DVD titles from zero instead of 1,
+  dagb found and notified me of via IRC - thanks
+
+2010-06-29  danielgtaylor <dan@programmer-art.org>
+
+  * arista/transcoder.py: Allow videos to be upscaled to fit as closely as
+  possible to the requested box size of a preset. This allows small videos to
+  be upscaled but still adds padding where necessary [e.g. to the width] to
+  achieve the required dimensions.
+
+2010-06-23  danielgtaylor <dan@programmer-art.org>
+
+  * arista/transcoder.py: Update videobox usage to add ffmpegcolorspace to fix
+  potential link problems to encoders like xvidenc. Added a note to remove this
+  hack when it is no longer needed.
+
+2010-06-20  danielgtaylor <dan@programmer-art.org>
+
+  * arista-transcode, arista/transcoder.py: Add the ability to specify subtitle
+  file character encoding in the TranscoderOptions object. This is exposed
+  through a new option to arista-transcode called --subtitle-encoding.
+
+2010-06-18  danielgtaylor <dan@programmer-art.org>
+
+  * setup.py: Fix issue #14 - arista-nautilus should be byte compiled at
+  install time. Also removes a warning when distutils doesn't likethe zip_safe
+  option required for easy_install to work.
+
+2010-06-17  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk, arista-transcode: Fix Issue #15 - Python shebang lines should
+  read /usr/bin/python
+
+  * arista/presets.py, arista/transcoder.py: Allow presets to specify custom
+  elements to apply transformations to the video stream. This allows you to
+  rotate, for example, by setting "transform": "videoflip method=clockwise" in
+  the JSON device preset. Since any element can be used and you are modifying
+  raw video this can also be used to add effects, color balance, sharpen, etc.
+
+2010-06-13  danielgtaylor <dan@programmer-art.org>
+
+  * README.md: Add note about Debian dependencies as mentioned in issue #13
+
+2010-06-12  danielgtaylor <dan@programmer-art.org>
+
+  * presets/computer.json, presets/web.json: Update computer and web preset
+  default quality and speed settings so that WebM output more closely matches
+  the encodign speed and file size of H.264.
+
+2010-06-10  danielgtaylor <dan@programmer-art.org>
+
+  * README.md: Fix small typo in example GStreamer pipeline
+
+  * README.md: Updated dependencies to show that both udev and dbus+HAL are
+  supported, added minimum python version info to deps
+
+  * locale/templates/arista.pot: Updated translations to include new nautilus
+  extension
+
+  * utils/update_translation.sh: Update script to update translation template
+  file to also include new nautilus script
+
+  * utils/run_tests.py: Update test runner syntax to the new arista-transcode
+  syntax and always output a status report even if the user stops the tests
+  early.
+
+  * arista/discoverer.py, arista/transcoder.py: Implement DVD main feature
+  title auto-discovery by checking all titles and picking the one with the
+  longest duration if no explicit title is given. You can still rip explicit
+  titles using arista-transcode or the simple GTK+ GUI with e.g.
+  dvd:///dev/dvd@2.
+
+2010-06-09  danielgtaylor <dan@programmer-art.org>
+
+  * arista-nautilus.py: Prevent Nautilus from locking up when running the
+  simplified Arista GTK+ GUI during jobs
+
+  * setup.py: Version bump to 0.9.5
+
+  * arista-nautilus.py: Use the new simplified GTK+ GUI for the Nautilus
+  extension
+
+  * arista-gtk: Implement simplified GUI for scripts and the nautilus extension
+  to use. This adds a --simple option to the GTK+ GUI that hides everything but
+  the preview/progress area, takes in an optional device and preset and any
+  number of filenames, and closes when the queue is empty.
+
+  * ui/error.svg: Add error icon for failure message notifications
+
+  * arista-gtk: Properly react to and show errors in the pipeline when they
+  occur in the GTK+ GUI, including removing the items from the queue and
+  processing others.
+
+  * presets/computer.json: Updated H.264 computer preset to not use bframes as
+  they can cause random crashes, fixes the x264_encoder_frame_end: Assertion
+  'pic_out->i_pts >= pic_out->i_dts' failed issue.
+
+  * arista/queue.py: Prevent crash when stopping items in the queue because
+  there isn't always a source element anymore. Just pass an EOS signal to the
+  entire pipe instead.
+
+  * arista/transcoder.py: Switch back to dvdreadsrc so that title selection for
+  DVDs works and to prevent endless loops and menus from being used in the
+  output. This should go back to rsndvdbin through uridecodebin at some point
+  but just isn't currenly possible.
+
+  * arista/discoverer.py: Don't give up printing metadata if no mimetype could
+  be found - it's possible stream data was still found
+
+2010-06-07  danielgtaylor <dan@programmer-art.org>
+
+  * screenshots/arista-clearlooks.png, screenshots/arista-futurama.png,
+  screenshots/arista-human.png, screenshots/arista-shiki.png: Removed
+  screenshots directory as they now reside in the arista-website project
+
+  * arista-gtk: Update default preview framerate to be higher so users get more
+  immediate and up-to-date feedback while transcoding
+
+  * arista/transcoder.py: Catch NotImplementedError when getting the number of
+  CPU cores, change default to 2 since most people seem to have dual-core
+  systems now.
+
+2010-06-06  danielgtaylor <dan@programmer-art.org>
+
+  * arista/transcoder.py: For muxers that support audio and video pad
+  templates, set them to prevent gst launch parsing issues with elements unable
+  to link. Fixes an issue with my Toshiba M500's webcam when using
+  x264enc/qtmux and mpeg2enc/ffmux_dvd. This prevents setting the pad template
+  name for oggmux which was causing an issue previously as the pad names had
+  been hard-coded for all muxers before
+  baf616400358c3ecd7ff9259cdeef9232edbcb76.
+
+  * arista/queue.py: Fix potential crash when pipe creation has failed but you
+  still try to remove an item from the queue
+
+  * arista/discoverer.py: Only connect to unknown-type signal if the decoder
+  bin actually supports it, prevents issue on DVD stream discovery
+
+  * README.md, arista/__init__.py, ui/about.ui: Version bump to 0.9.5
+
+  * arista/utils.py: Fix automagic naming of output files for DVD and V4L/V4L2
+  source inputs to not use the absolute uri but instead use the path's
+  basename. This prevents trying to write to /dev and such
+
+  * arista/transcoder.py: Use uridecodebin when building the transcoding
+  pipeline, similar to the latest change to the discoverer. This should
+  simplify V4L and DVD source handling. On my Macbook this fixes recording from
+  webcams.
+
+  * arista/discoverer.py: Update discoverer to use uridecodebin as it
+  simplifies dealing with webcams, video cameras, DVD media, etc. DVD title
+  selection is now totally automatic and uses the same logic as e.g. Totem.
+
+2010-06-05  danielgtaylor <dan@programmer-art.org>
+
+  * MANIFEST.in, README.md, setup.py: Update documentation and installation
+  scripts with info about the new nautilus extension
+
+  * arista-nautilus.py: Update nautilus extension to support multiple selected
+  files and to use the new arista-transcode syntax
+
+  * README.md: Updated for new arista-transcode syntax
+
+  * arista-transcode: Update CLI script to use the queue, allows transcoding
+  any number of entries via a single command. This introduces a
+  backwards-incompatible change in the argument handling of the CLI script. See
+  arista-transcode --help for the new syntax.
+
+  * arista-gtk: Update GTK GUI to use the modified queue signal for discovered
+  entries
+
+  * arista/queue.py: Add entry-pass-setup and entry-error signals to queue,
+  update discovered signal to pass info and is_media along to the callback
+
+  * arista/utils.py: Add method to generate default output filenames to the
+  arista python library utilities
+
+2010-06-04  danielgtaylor <dan@programmer-art.org>
+
+  * arista-nautilus.py: Added Nautilus extension to allow converting media
+  directly from your desktop or file browser windows. Currently this spawns a
+  simple arista-transcode instance to do the actual work.
+
+  * README.md: Fix small typo in create preset link, whoops
+
+  * .gitignore: Ignore build directory created when running installs
+
+  * arista/inputs/udevdisco.py: Return actual V4L version in udev discovery
+  backend now that I've figured out how to do it
+
+2010-06-03  danielgtaylor <dan@programmer-art.org>
+
+  * setup.py: Don't install translation README, do install README, LICENSE, and
+  AUTHORS files to the doc directory as this seems to be the proper thing to
+  do.
+
+  * arista-gtk: Fix adding disk and video input sources to the queue as they
+  are not normal files, instead check if the selected file is a directory and
+  if so, treat it as such, but if not then treat it as a normal file
+
+  * README.md: Add python-rsvg dependency when using KDE as reported by Kubuntu
+  user
+
+2010-06-02  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk, arista-transcode: Fix il8n binding stuff on FreeBSD, thanks
+  Steve Wills.
+
+  * README.md: Add note about python-simplejson dependency for older python
+  versions
+
+  * setup.py: Add new arista.inputs module to be included in installs and
+  release tarballs
+
+  * MANIFEST.in: Make sure README gets into the release tarballs
+
+  * arista/presets.py: Update imports to allow simplejson if using a python
+  version older than 2.6.x
+
+2010-06-01  danielgtaylor <dan@programmer-art.org>
+
+  * locale/templates/arista.pot: Update translation template to reflect new
+  strings and translation changes due to splitting of arista.inputs into its
+  own module with fallback support for HAL
+
+  * utils/update_translation.sh: Update translation template generation script
+
+  * arista/inputs.py, arista/inputs/__init__.py, arista/inputs/haldisco.py,
+  arista/inputs/udevdisco.py: Reimplement DBus+HAL device discovery as a
+  fallback for people without udev, which happens to be a lot more than I ever
+  expected. Sorry...
+
+2010-05-30  danielgtaylor <dan@programmer-art.org>
+
+  * README.md, arista/__init__.py, setup.py, ui/about.ui: Minor version bump to
+  fix severe bug in 0.9.4 release
+
+  * presets/computer-live.svg, presets/computer-webm.svg,
+  presets/computer.json: Fix theora encoding, add icons to live and webm
+  presets
+
+  * arista-gtk: Fix an issue where the UI would freeze when not creating a new
+  folder to output a directory of jobs to. Instead, just let users pick an
+  existing folder as this is more intuitive.
+
+2010-05-29  danielgtaylor <dan@programmer-art.org>
+
+  * setup.py: Update trove URL to point to new website, updated already on PyPi
+
+  * setup.py: Update one remaining old link to launchpad to point to github
+  instead.
+
+  * locale/templates/arista.pot: Updated translation template for 0.9.4 release
+
+  * arista-gtk: Update notification message to use keyword arguments rather
+  than positional for proper translation
+
+  * README.md, README.releases, setup.py: Update various readme and setup files
+  for the final release.
+
+  * .gitignore: Updated to ignore MANIFEST, distributions, and tests
+
+  * debian/changelog, debian/compat, debian/control, debian/copyright,
+  debian/rules: Remove debian files at the request of the Debian/Ubuntu
+  downstream package maintainer.
+
+  * arista-gtk: Implement processing entire directories. The source combo now
+  contains a new item for choosing a directory to process. When adding to the
+  queue, you choose a second directory and the default filenames for each entry
+  given the input options and preset are generated as the output file. Each
+  entry is added to the queue in one go, and then processed.
+
+  * presets/web-webm.svg, presets/web.json: Add WebM icon based on
+  webm-project.org site favicon using the Tango colors, set default web preset
+  to be WebM
+
+  * presets/computer.json, presets/web.json: Fix WebM presets by making sure to
+  allow an audio bit width of 32 which the vorbis encoder needs.
+
+  * arista/transcoder.py: Change audio processing pipeline to make caps use
+  ranges to leave a little more leeway for pipeline element autonegotiation.
+  Logic changes fix channel counts for vorbis encoder, among other small issues
+
+  * arista/transcoder.py: Add support for dynamically setting variables in
+  preset files, starting with a 'threads' variable that will be set by Arista
+  based on the available CPU count found with the multiprocessing module.
+
+  * presets/computer.json: Update computer preset to simplify options a bit and
+  add WebM support; the computer presets are now *H.264, Live Input, Theora,
+  and WebM with Live Input still requiring x264enc.
+
+  * presets/computer.json, presets/ipad.json, presets/ps3.json,
+  presets/psp.json: Update various presets to use qtmux instead of ffmux_mp4,
+  minor version bumps
+
+  * presets/android.json: Add HTC Desire name to Nexus One preset, update to
+  use qtmux, version bump
+
+  * README.md: Updated to make links show properly on Github
+
+  * arista-gtk: Fix sorting of devices in GTK+ interface, now uses the name
+  property of devices which will ignore the 'Generic' make and instead just use
+  the model as it should have before.
+
+  * presets/flv.png, presets/web-flv.png, presets/web.json: Update web device
+  presets to include H.264 and WebM, the latter will only work if you are
+  running GStreamer trunk for now.
+
+  * presets/ipod-iphone.svg, presets/ipod-touch.svg, presets/ipod-video.svg,
+  presets/ipod.json, presets/ipod.svg: Updated Apple iPhone / iPod presets to
+  specifically list different versions in the presets, adding to the changes
+  from fcsonline
+
+2010-05-28  danielgtaylor <dan@programmer-art.org>
+
+  * presets/nokia-nseries.json: Update to add N900 support and default to the
+  N900 instead of the N770
+
+  * arista/transcoder.py: Remove hardcoded muxer sink names as they don't
+  appear to be required these days - all my test files work without them and it
+  allows us to use more muxers like flvmux. Fixes issue fcsonline was having.
+
+  * arista-transcode: Fix printed statement that didn't adhere to the
+  quiet/verbose arguments
+
+  * utils/generate_tests.py, utils/run_tests.py: Fix the test generation and
+  running scripts to work again, they were horribly out of date. Not all tests
+  seem to pass on my local machine but it's a good start to improving any
+  issues.
+
+  * arista/transcoder.py: Add a method by which the transcoder can force a job
+  to finish if it stalls for more than five seconds after starting. Even on
+  really slow machines this should never happen, and it prevents issues where
+  the application can freeze indefinitely for apparently no reason.
+
+  * arista-transcode: Connect to and properly handle transcoder pipeline errors
+  in terminal script to exit properly when needed
+
+  * arista/transcoder.py: Add error signal for transcoder to be sent when e.g.
+  a pipeline cannot be constructed properly so that applications can properly
+  handle this situation
+
+  * arista-gtk: Default to source directory when adding to queue and make sure
+  to store the last used path when installing presets, just like when selecting
+  a new source file
+
+2010-05-27  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk, arista/presets.py: Device preset update methods now return a
+  list of devices that were updated or installed; use this info to display
+  notifications to the user when such actions happen; remove extra
+  click-through dialog after installing updated presets and no longer destroy
+  and restart main window after updates
+
+2010-05-27  Ferran Basora <fcsonline@gmail.com>
+
+  * presets/ipod-nano.svg, presets/ipod.json: New Ipod Nano Preset, with icon
+
+  * arista/transcoder.py: Removed video_00 and audio_00 from transcoder to get
+  work the FLV
+
+  * presets/flv.png, presets/web.json, presets/web.svg: New Web Device, with
+  World Wide Web Presets, like FLV
+
+2010-05-27  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk, arista-transcode, arista/presets.py, ui/main.ui: Add ability to
+  install preset files via a menu item, add arista-transcode flag to install on
+  the terminal, reorganize device loading code in such a way that the main app
+  doesn't need to be restarted in order for newly updated device presets to
+  show up and be usable
+
+  * presets/android-droid.png, presets/android-g1.png,
+  presets/android-nexus-one.svg, presets/android.json, presets/android.svg: Add
+  single preset for Android: Nexus One, Motorola Droid, and G1
+
+  * presets/d2.json, presets/d2.svg, presets/droid.json, presets/droid.svg,
+  presets/nwz-818.json, presets/nwz-818.svg, presets/pda.json, presets/pda.png,
+  presets/zen.json, presets/zen.svg: Cleanup default presets - to get these you
+  need to now use the 'Download more' menu item and grab them from the website.
+  This is to ensure a clean default setup without the menu growing to gigantic
+  proportions, and each user on a computer can then store presets for only the
+  devices they care about
+
+  * arista-gtk: Don't crash when a specified icon file is missing
+
+  * arista-gtk: Add link to create a new device preset, generalize the
+  processing for menu items that are links
+
+  * MANIFEST.in: Updated manifest to include the new JSON preset files when
+  building distributions
+
+2010-05-26  danielgtaylor <dan@programmer-art.org>
+
+  * arista/presets.py: Update device preset update location, no longer install
+  new device presets as this will now be done manually, instead just download
+  any available updates
+
+  * arista-gtk, arista/queue.py: Only show notifications for entries that
+  finish on their own - if we remove an item from the queue it should not show
+  that it has finished.
+
+2010-05-24  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk, arista/presets.py: Add ability to have an icon for each preset
+  in a device. If one is given it will be displayed in the GTK+ interface.
+
+2010-05-23  danielgtaylor <dan@programmer-art.org>
+
+  * README.md: Update website location, update optional dependencies, add link
+  to website code to readme.
+
+  * arista/presets.py: Fix loading author data from preset files, was broken by
+  using an incorrect path to the data and defaulting to nothing
+
+  * presets/ipod.json: Add iPhone description to iPod/iPhone preset
+
+  * presets/ipad.json: Add iPad preset, icon by techtoucian on deviantart
+
+  * arista-gtk, ui/about.ui, ui/main.ui: Update website URL to point to new
+  domain, remove Launchpad Answers link from help menu, add link to get more
+  device presets from the device menu
+
+  * arista-gtk: Implement support for NotifyOSD, when using arista-gtk and a
+  job has finished you will get a nice notification if you have the optional
+  pynotify library installed.
+
+  * arista/presets.py: Add link back to device from presets so that if you are
+  only given a preset you can get the device it belongs to, including the
+  make/model and icon
+
+2010-05-22  danielgtaylor <dan@programmer-art.org>
+
+  * arista/presets.py, presets/computer.json, presets/computer.xml,
+  presets/d2.json, presets/d2.xml, presets/droid.json, presets/droid.xml,
+  presets/dvd.json, presets/dvd.xml, presets/ipod.json, presets/ipod.xml,
+  presets/nokia-nseries.json, presets/nokia-nseries.xml, presets/nwz-818.json,
+  presets/nwz-818.xml, presets/pda.json, presets/pda.xml, presets/ps3.json,
+  presets/ps3.xml, presets/psp.json, presets/psp.xml, presets/zen.json,
+  presets/zen.xml: Add ability to save presets, switch from XML to using JSON
+  to store preset data as it is significantly easier to manage both in code and
+  by hand; this paves the way for a proper preset editor
+
+2010-05-21  danielgtaylor <dan@programmer-art.org>
+
+  * arista-gtk, arista-transcode, arista/__init__.py, arista/presets.py,
+  arista/queue.py, arista/transcoder.py, arista/utils.py: Update copyright on
+  source files to include 2010
+
+  * arista-transcode: Update terminal client to output preset information in a
+  much nicer way, significantly improves readability
+
+  * ui/about.ui: Update copyright year in GTK GUI about dialog
+
+2010-05-19  danielgtaylor <dan@programmer-art.org>
+
+  * README.md, arista/__init__.py, setup.py, ui/about.ui: Update version to
+  0.9.4
+
+  * locale/ar/LC_MESSAGES/arista.mo, locale/ast/LC_MESSAGES/arista.mo,
+  locale/bg/LC_MESSAGES/arista.mo, locale/ca/LC_MESSAGES/arista.mo,
+  locale/cs/LC_MESSAGES/arista.mo, locale/de/LC_MESSAGES/arista.mo,
+  locale/en_GB/LC_MESSAGES/arista.mo, locale/es/LC_MESSAGES/arista.mo,
+  locale/eu/LC_MESSAGES/arista.mo, locale/fi/LC_MESSAGES/arista.mo,
+  locale/fr/LC_MESSAGES/arista.mo, locale/gl/LC_MESSAGES/arista.mo,
+  locale/hu/LC_MESSAGES/arista.mo, locale/it/LC_MESSAGES/arista.mo,
+  locale/ja/LC_MESSAGES/arista.mo, locale/kn/LC_MESSAGES/arista.mo,
+  locale/nl/LC_MESSAGES/arista.mo, locale/pl/LC_MESSAGES/arista.mo,
+  locale/pt/LC_MESSAGES/arista.mo, locale/pt_BR/LC_MESSAGES/arista.mo,
+  locale/ro/LC_MESSAGES/arista.mo, locale/ru/LC_MESSAGES/arista.mo,
+  locale/sl/LC_MESSAGES/arista.mo, locale/sv/LC_MESSAGES/arista.mo,
+  locale/templates/arista.pot, locale/tr/LC_MESSAGES/arista.mo,
+  locale/zh_TW/LC_MESSAGES/arista.mo: Add updated translations from Launchpad;
+  added bg,cs,en_GB,eu,gl,hu,kn,nl,pt,ro,ru,sl,sv,tr,zh_TW
+
+  * README.md, arista-gtk, arista/inputs.py, debian/control, setup.py: Port
+  Arista from using DBus+Hal to plain udev as HAL has been deprecated.
+
+2010-05-17  danielgtaylor <dan@programmer-art.org>
+
+  * arista/presets.py: Add PNG image check to updater so updates work for
+  presets that require PNG images instead of SVG
+
+  * presets/droid.png, presets/droid.svg, presets/droid.xml: Switch droid
+  preset to use SVG image instead of PNG, allows older versions to update
+  presets properly as they only check for SVG
+
+2010-05-13  danielgtaylor <dan@programmer-art.org>
+
+  * presets/droid.png, presets/droid.xml: Add Motorola Droid preset from Nico
+  Argentina
+
+  * arista-gtk: Fix launchpad bug #489948 - queue entry option data being
+  changed by adding later entries.
+
+2009-12-17  Daniel G. Taylor <danielgtaylor@gmail.com>
+
+  * README, README.md: Rename README to get parsed as MarkDown on GitHub
+
+  * README: Fix broken link in readme and update section about Launchpad to
+  GitHub
+
+2009-12-05  Daniel G. Taylor <danielgtaylor@gmail.com>
+
+  * arista/transcoder.py: Catch a rare case where GStreamer didn't set
+  videocaps for a video file properly. Everything should still work but we
+  can't lookup whether a pixel aspect ratio exists. Fixes lp bug 441069.
+
+  * arista/transcoder.py: Don't display strange negative status information,
+  instead fall back to saying an unknown amount of time remains with no current
+  status.
+
+  * arista/utils.py, setup.py: Allow running Arista via virtualenv and using
+  easy_install to install it into the virtual environment by slightly modifying
+  how easy_install is allowed to handle the package and updating the search
+  paths to include searching inside an unzipped egg within the virtual
+  environment. Fixes lp bug 427688.
+
+  * arista-gtk, arista-transcode: Patch by fcrozat AT mandriva.com - fix
+  translation for non-UTF8 locale. Fixes lp bug 410266.
+
+  * arista-gtk: Ellipsize long filenames so the window doesn't grow to a
+  ridiculous size. Fixes lp bug 407149.
+
+  * arista-gtk: Remember last opened location for file chooser dialog as a
+  gconf setting. The last path you chose is now saved between runs and adding
+  multiple files from a single directory has become much more convenient. Fixes
+  lp bug 407146.
+
+  * presets/dvd.xml: Constrain DVD MPEG2 sizes as GStreamer DVD stuff doesn't
+  seem to be totally spec compliant - this should now work for pretty much any
+  source. Fixes lp bug 399725.
+
+  * .gitignore: Added gitignore for pyc files and such
+
+  * arista-gtk, ui/main.ui: Add link to launchpad answers pages in the help
+  menu of the GTK+ client
+
+2009-11-25  Daniel G. Taylor <dan@snowstorm>
+
+  * arista/presets.py: Log some extra information while attempting to
+  automagically install missing plugins, thanks for suggesting this louiswu
+
+2009-10-07  Daniel G. Taylor <dan@bitsontherun-macbook>
+
+  * presets/computer.xml: Added patent free presets by Alessio Treglia, see lp
+  bug #443099
+
+2009-07-26  Daniel G. Taylor <dan@lime64>
+
+  * presets/zen.svg, presets/zen.xml: Add Creative ZEN preset by Oscar Orgeira
+  <geinux AT gmail DOT com>
+
+2009-07-09  Daniel G. Taylor <dan@Titan>
+
+  * arista-gtk, arista-transcode, arista/queue.py, arista/transcoder.py: Create
+  a general object for transcoder options that is passed to the transcoder on
+  instantiation. Updated the queue to support this new object and removed
+  arista.transcoder.InputOptions. Updated arista-gtk and arista-transcode
+
+2009-07-08  Daniel G. Taylor <dan@Titan>
+
+  * arista/presets.py: Added a property to device objects to get the default
+  preset if it exists
+
+2009-07-05  Daniel G. Taylor <dan@Titan>
+
+  * arista-gtk, arista-transcode, arista/utils.py, setup.py: Install
+  translations to /usr/share/locale by default and update the code to reflect
+  this. No longer required to bindtextdomain unless not currently installed to
+  prefix. arista.utils.get_path now accepts a default keyword argument that
+  will be returned rather than raising IOError if the path cannot be found.
+  Special thanks to Rahul Sundaram <sundaram AT fedoraproject DOT org> for
+  helping me realize this was broken.
+
+2009-07-02  Daniel G. Taylor <dan@lime64>
+
+  * utils/update_translation.sh: Add tool to extract new translation template
+  since I can never remember the damn commands
+
+  * locale/templates/arista.pot: Update translation template
+
+2009-06-30  Daniel G. Taylor <dan@Titan>
+
+  * setup.py: Update setup.py download path for python package index to point
+  to the latest version
+
+2009-06-29  Daniel G. Taylor <dan@Titan>
+
+  * arista-gtk, arista-transcode, arista/__init__.py, arista/inputs.py,
+  arista/presets.py, arista/queue.py, arista/transcoder.py, arista/utils.py:
+  Fix typo in license documentation
+
+2009-06-28  Daniel G. Taylor <dan@lime64>
+
+  * MANIFEST.in, README, arista/__init__.py, debian/changelog, setup.py,
+  ui/about.ui: Quick fix for another release as I had forgotten a couple things
+  - my bad
+
+  * setup.py: Update setup.py for new release
+
+  * README, arista/__init__.py, debian/changelog: Update for 0.9.2 release
+
+2009-06-18  Daniel G. Taylor <dan@lime64>
+
+  * locale/ar/LC_MESSAGES/arista.mo, locale/ast/LC_MESSAGES/arista.mo,
+  locale/ca/LC_MESSAGES/arista.mo, locale/de/LC_MESSAGES/arista.mo,
+  locale/es/LC_MESSAGES/arista.mo, locale/fi/LC_MESSAGES/arista.mo,
+  locale/fr/LC_MESSAGES/arista.mo, locale/it/LC_MESSAGES/arista.mo,
+  locale/ja/LC_MESSAGES/arista.mo, locale/pl/LC_MESSAGES/arista.mo,
+  locale/pt_BR/LC_MESSAGES/arista.mo, locale/templates/arista.pot: Updated
+  translations from the latest on Launchpad.net
+
+  * presets/nokia-nseries.svg, presets/nokia-nseries.xml: Added Nokia N-Series
+  presets that still need to be properly tested
+
+  * presets/nwz-818.svg, presets/nwz-818.xml: Added Sony NWZ-818 preset from
+  Patrick Ulbrich
+
+  * presets/pda.png, presets/pda.xml: Added a generic PDA preset from pananapan
+  at hotmail dot com
+
+2009-06-17  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk, arista-transcode, arista/queue.py, arista/transcoder.py,
+  ui/main.ui, ui/props.ui: Implement rendering subtitles from a file, adapted
+  from a patch sent by xuzo at cuarentaydos dot com
+
+2009-05-11  Daniel G. Taylor <dan@Titan>
+
+  * arista/presets.py, ui/main.ui, ui/prefs.ui: Merge fixes from deejay1
+
+2009-05-11  Łukasz Jernaś <deejay1@srem.org>
+
+  * arista/presets.py: Really fix the typo.
+
+  * ui/main.ui, ui/prefs.ui: Don't mark GTK+ stock items as translatable.
+
+  * arista/presets.py: Fixed typo in presets.py
+
+2009-05-11  Daniel G. Taylor <dan@Titan>
+
+  * arista/presets.py: Don't dump errors to the console when no network
+  connection is available or the server is down
+
+2009-05-04  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk, arista-transcode, arista/presets.py, arista/transcoder.py: Fix
+  #371395 - two pass encoding broken
+
+2009-05-03  Daniel G. Taylor <dan@lime64>
+
+  * README.releases: Small update to releases readme
+
+  * locale/de/LC_MESSAGES/arista.mo, locale/es/LC_MESSAGES/arista.mo,
+  locale/fr/LC_MESSAGES/arista.mo, locale/it/LC_MESSAGES/arista.mo: Translation
+  update for new release
+
+  * debian/changelog: Update debian files for new release
+
+  * arista-transcode: Make sure everything properly cleans up and creates a
+  playable file when you Ctrl-C arista-transcode, this fixes some messed up
+  H.264 files there were being produced
+
+2009-05-03  Daniel G. Taylor <dan@Titan>
+
+  * arista-gtk: Choose file option now uses gtk-open stock icon
+
+2009-05-02  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk, ui/prefs.ui: Implement preset-info blueprint - show small about
+  dialog for presets in the preferences dialog preset list
+
+  * setup.py: Update setup.py in preparation for release
+
+  * ui/main.ui: GNOME HIG says text should be left aligned in labels for the
+  source and device selection
+
+  * README: Updated readme in preparation for release
+
+  * arista/__init__.py, ui/about.ui: Added translation and license info to
+  about dialog, version bump in prep for release
+
+  * debian/control: Changed Ubuntu section to GNOME since video appears to be
+  wrong and audio doesn't quite fit, fixes #370589
+
+  * arista-gtk: Fix #370588 - update checks occur too often and could hammer
+  the server. There is now a minimum six hour wait between update checks.
+
+  * README.releases: Added release readme with checklist for making new
+  releases
+
+  * arista/queue.py: Add insert method to arista queue
+
+2009-05-01  Daniel G. Taylor <dan@lime64>
+
+  * arista/presets.py: Added list of internally-used element names to also look
+  up during automatic codec checking / installation
+
+  * arista/transcoder.py: Switch from ffaudioresample to audioresample element
+  for resampling audio during transcoding
+
+2009-05-01  Daniel G. Taylor <dan@Titan>
+
+  * arista/presets.py: Fix deadlocking issues by always making gobject's main
+  loop call the callback when checking for a preset's required elements
+
+2009-05-01  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk, arista/presets.py: Added GStreamer plugin auto-installation to
+  library, started integration into GUI
+
+2009-04-30  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk, ui/main.ui: Implement live-source-stop blueprint - add a stop
+  button next to the progress bar to give users an obvious way to stop the
+  currently running job, in particular when the source has no duration like v4l
+  devices can.
+
+  * arch/arista-0.8/PKGBUILD, arch/arista-bzr/PKGBUILD: Removing arch package
+  scripts since they are maintained in the AUR by Bug and it is easier to just
+  point people there than keeping the files in sync here
+
+  * locale/README, locale/de/LC_MESSAGES/arista.mo,
+  locale/es/LC_MESSAGES/arista.mo: Added German translation, updated Spanish
+  translation, added translation readme file pointing to launchpad
+
+2009-04-29  Daniel G. Taylor <dan@lime64>
+
+  * arista/transcoder.py: Fix #368883 pause issue - stupid typo I introduced
+  just before release *grumble*
+
+2009-04-29  Daniel G. Taylor <dan@Titan>
+
+  * debian/changelog, debian/control: Updated debian build files
+
+2009-04-28  Daniel G. Taylor <dan@lime64>
+
+  * setup.py: Update trove tarball link
+
+  * setup.py: Updated trove categorization for pypi
+
+  * LICENSE, arista-gtk, arista-transcode, arista/__init__.py,
+  arista/inputs.py, arista/presets.py, arista/queue.py, arista/transcoder.py,
+  arista/utils.py: Switch to LGPL 2.1 rather than LGPL3, whoops
+
+  * arista-gtk, arista-transcode, arista/__init__.py, arista/inputs.py,
+  arista/presets.py, arista/queue.py, arista/transcoder.py, arista/utils.py:
+  Small fix to licensing
+
+  * arista/__init__.py, arista/presets.py, arista/utils.py: Replace some tabs
+  with spaces in old code
+
+  * LICENSE, arista-gtk, arista-transcode, arista/__init__.py,
+  arista/inputs.py, arista/presets.py, arista/queue.py, arista/transcoder.py,
+  arista/utils.py, setup.py: Change license GPL3 -> LGPL3
+
+  * locale/es/LC_MESSAGES/arista.mo: Added Spanish translation from Guillermo
+
+  * ui/main.ui: Fix alignment of labels in main ui, noticed while using spanish
+  translation
+
+  * debian/control: Add a little version info the the debian control file to
+  prevent using older versions of pygtk and pygst
+
+  * locale/templates/arista.pot: Update translation template
+
+  * arista/transcoder.py: Remove a few queue elements that were not necessary,
+  thanks to wtay, __tim, and thaytan on irc for helping with this one
+
+  * arista/presets.py: Rates should be integers not strings, whoops
+
+2009-04-28  Daniel G. Taylor <dan@Titan>
+
+  * arista-transcode: Add line confirming options when using arista-transcode
+  as a nice reminder of what is about to run
+
+  * arista/transcoder.py: Make sure to escape ; character in debug output so
+  you can copy and pasted directly in a terminal using gst-launch
+
+  * arista/presets.py, arista/transcoder.py: Audio rates should be integers not
+  fractions internally otherwise GStreamer will freak out
+
+  * locale/arista.pot, locale/templates/arista.pot: Moved translation template
+  to proper location as used by launchpad
+
+  * locale/arista.pot: Updated translation template
+
+  * arista-gtk: Forgotten string to translate
+
+  * arista-gtk, arista-transcode: Fixed gtk builder translation domain by using
+  locale module
+
+2009-04-27  Daniel G. Taylor <dan@lime64>
+
+  * arista/transcoder.py: Remove forgotten debug statements
+
+  * setup.py: Setup distutils data_files in a slightly different way to allow
+  adding directory trees in presets, ui, and locale folders in preparation for
+  translations
+
+  * ui/about.ui: Fix website link to point to the proper page in GTK about
+  dialog
+
+  * ui/about.ui: About dialog version bump in preparation for release
+
+  * locale/arista.pot: Updated translation template
+
+  * MANIFEST.in: Add desktop file to mainfest for generating source releases
+
+  * README: Updated readme with info for using --install-layout=deb option in
+  Jaunty to get the desired behavior of installing into sys.prefix
+
+  * arista.desktop, setup.py: Added desktop file to please Bastien Nocera,
+  currently hardcoded icon path as I'm not sure how that is supposed to work
+  for installing to other locations
+
+  * arista-gtk, ui/prefs.ui: Added option to disable checking for updates into
+  the GUI
+
+  * arista/presets.py: Change two info messages to debug messages
+
+  * presets/ps3.svg, presets/ps3.xml: Added Sony Playstation 3 presets based on
+  online tutorial for encoding for PS3 - currently untested
+
+  * presets/psp.xml: Limit audio sample rate for PSP preset as seen on several
+  tutorials for encoding for PSP online
+
+  * arista/transcoder.py: Fix small bug in width/height calculations that
+  prevented the proper size from being output
+
+  * arista/presets.py: Fix small bug when loading presets - width was being set
+  twice on accident
+
+  * debian/control: Update debian dependencies
+
+  * arista-gtk, arista-transcode, arista/presets.py: Slightly changed the
+  device preset update API and implemented checking for and installing updates
+  in the GTK GUI
+
+2009-04-26  Daniel G. Taylor <dan@lime64>
+
+  * arista-transcode, arista/presets.py: Allow updating of presets from a
+  central server and implemented a -u option for arista-transcode to update the
+  installed presets. Still needs to be added to the GUI
+
+  * generate_docs.sh, generate_tests.py, run_tests.py, utils/generate_docs.sh,
+  utils/generate_tests.py, utils/run_tests.py: Moved utility scripts to a utils
+  folder in the source tree
+
+  * setup.py: Update python package long description in preparation for release
+
+  * MANIFEST.in: Make sure il8n files are included in source distribution for
+  release
+
+  * setup.py: Update distutils script to install il8n files and bumped version
+  in preparation of next release
+
+  * README: Small cosmetic fix
+
+  * arista-gtk, arista-transcode, arista/discoverer.py, arista/presets.py,
+  arista/queue.py, arista/transcoder.py, arista/utils.py, locale/arista.pot:
+  Fix template strings to use named parameters so that translation via gettext
+  can work and add a translation template file so people can start translating
+  strings.
+
+  * arista-gtk, arista-transcode, arista/__init__.py, arista/discoverer.py,
+  arista/inputs.py, arista/presets.py, arista/queue.py, arista/transcoder.py,
+  arista/utils.py: Internationalize string handling throughout the arista
+  project
+
+2009-04-25  Daniel G. Taylor <dan@Titan>
+
+  * TODO: Removed local todo file, this is now handled nicely in Launchpad
+
+  * README: Updated readme in preparation for next release and to add
+  information about how to contribute
+
+2009-04-25  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk: Small sink element name change for consistency
+
+2009-04-24  Daniel G. Taylor <dan@Titan>
+
+  * arista-gtk, arista-transcode, arista/__init__.py: Make arista version be a
+  string rather than a float, version bump in preparation for next release,
+  update version string for GUI to differentiate it from the terminal client
+
+  * MANIFEST.in: Make sure to include debian package files when creating
+  distributions with distutils
+
+  * arista/transcoder.py: Make unknown duration return percentage complete as
+  zero instead of 100, fixes pulsing progress bar for live input sources in GUI
+
+  * debian/changelog, debian/compat, debian/control, debian/copyright,
+  debian/rules: Added files required to build debian package
+
+2009-04-23  Daniel G. Taylor <dan@Titan>
+
+  * arch/arista-0.8/PKGBUILD, arch/arista-bzr/PKGBUILD: Added Arch Linux build
+  scripts from bug under version control, announcement was here:
+  http://bbs.archlinux.org/viewtopic.php?pid=541387#p541387
+
+2009-04-22  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk: Select computer output device as the default in GTK+ GUI
+
+  * arista-gtk: Don't use the same variable name on two adjacent lines with one
+  overwriting the other as it's a bit confusing
+
+  * arista-gtk: Prevent crash when icon theme cannot find an icon for a chosen
+  input file, just leave the icon blank
+
+  * arista-gtk, arista-transcode, arista/queue.py, arista/transcoder.py: Added
+  some extra error handling when input files contain no valid audio or video
+  streams
+
+  * arista-gtk: Pulse progressbar if percentage is unknown, as with live input
+  sources
+
+2009-04-21  Daniel G. Taylor <dan@Titan>
+
+  * presets/computer.xml: Added live input preset for computer that uses a
+  constant bitrate H.264 setting which allows me to record live video from my
+  built-in iSight on a Macbook 2,1 utilizing both cores to stay under 100% cpu
+  total for a nice smooth video - from this preset you can convert to others as
+  needed for whatever devices
+
+2009-04-21  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk: Remove print statement - it shoudl use the logging module
+
+2009-04-21  Daniel G. Taylor <dan@Titan>
+
+  * arista/inputs.py: Merge last remaining missed svn revision, v4l sources
+  should now work again
+
+2009-04-21  Daniel G. Taylor <dan@lime64>
+
+  * arista-gtk: V4L devices get a nice video camera icon
+
+  * arista-gtk, arista/discoverer.py, arista/inputs.py, arista/transcoder.py:
+  Merge forgotten svn revisions, d'oh next time svn update before importing
+  into bazaar you tool
+
+  * arista-gtk, ui/prefs.ui: Update check_dvd configuration option to
+  check_inputs since we now support dvd, v4l, and v4l2 devices for input;
+  updated GUI to reflect this change
+
+  * arista-gtk: Link pixbuf with text renderer in treeviews and only use one
+  actual column since it is much cleaner
+
+  * AUTHORS, LICENSE, MANIFEST.in, README, TODO, arista-gtk, arista-transcode,
+  arista/__init__.py, arista/discoverer.py, arista/inputs.py,
+  arista/presets.py, arista/queue.py, arista/transcoder.py, arista/utils.py,
+  generate_docs.sh, generate_tests.py, presets/computer.svg,
+  presets/computer.xml, presets/d2.svg, presets/d2.xml, presets/dvd.svg,
+  presets/dvd.xml, presets/ipod.svg, presets/ipod.xml, presets/psp.svg,
+  presets/psp.xml, run_tests.py, screenshots/arista-clearlooks.png,
+  screenshots/arista-futurama.png, screenshots/arista-human.png,
+  screenshots/arista-shiki.png, setup.py, ui/about.ui, ui/icon-small.svg,
+  ui/icon.svg, ui/main.ui, ui/prefs.ui: Initial import into bazaar
